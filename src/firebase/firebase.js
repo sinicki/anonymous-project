@@ -21,23 +21,27 @@ class Firebase {
   }
 
   //example
-  saveToDatabase = (fund) => {
-    this.db.collection("funds").add({
-      fund,
-    });
-  };
+  // saveToDatabase = (fund) => {
+  //   this.db.collection("funds").add({
+  //     fund,
+  //   });
+  // };
 
-  signup(email, password) {
-    return this.auth().createUserWithEmailAndPassword(email, password);
-  }
+  // signup(email, password) {
+  //   return this.auth().createUserWithEmailAndPassword(email, password);
+  // }
 
   signinWithGoogle() {
     const provider = new this.auth.GoogleAuthProvider();
     return this.auth().signInWithPopup(provider);
   }
 
-  signin(email, password) {
-    return this.auth().signInWithEmailAndPassword(email, password);
+  // signin(email, password) {
+  //   return this.auth().signInWithEmailAndPassword(email, password);
+  // }
+
+  signout() {
+    return this.auth().signOut();
   }
 }
 export default Firebase;

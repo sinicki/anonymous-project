@@ -15,6 +15,7 @@ import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
+import { FirebaseContext } from "./firebase";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -61,6 +62,7 @@ const Content = () => {
 };
 
 function AppMenu({ anchorEl, handleClose, user }: any) {
+  const firebase = React.useContext(FirebaseContext);
   return (
     <Menu
       id="simple-menu"
@@ -74,7 +76,17 @@ function AppMenu({ anchorEl, handleClose, user }: any) {
           <Link to={el.link}>{el.label}</Link>
         </MenuItem>
       ))}
-      {user && <MenuItem onClick={handleClose}>Logout</MenuItem>}
+      {user && (
+        <MenuItem
+          onClick={(ev) => {
+            handleClose(ev);
+            // @ts-ignore
+            if (firebase !== null) firebase.signout();
+          }}
+        >
+          Logout
+        </MenuItem>
+      )}
     </Menu>
   );
 }
