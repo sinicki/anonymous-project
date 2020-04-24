@@ -17,7 +17,10 @@ import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
 import "./styles.css";
 
+import Firebase, { FirebaseContext } from './firebase';
+
 const useStyles = makeStyles((theme) => ({
+
   root: {
     flexGrow: 1,
   },
