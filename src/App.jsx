@@ -4,11 +4,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Companies from "./views/companies";
 import Invest from "./views/invest";
 import Profile from "./views/profile";
@@ -17,19 +18,25 @@ import Dashboard from "./views/dashboard";
 import Funds from "./views/funds/index";
 import "./styles.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   content: {
-    margin: "15px"
-  }
+    margin: "15px",
+  },
+  fundButton: {
+    flexGrow: 1,
+    "& a": {
+      color: "white",
+    },
+  },
 }));
 
 const VIEWS = [
@@ -38,7 +45,7 @@ const VIEWS = [
   ["profile", Profile],
   ["invest", Invest],
   ["auth", Auth],
-  ["", Dashboard]
+  ["", Dashboard],
 ];
 
 const Content = () => {
@@ -57,10 +64,10 @@ const LOGGED_OUT_MENU = [{ label: "Login", link: "auth" }];
 
 const LOGGED_MENU = [
   { label: "Profile", link: "profile" },
-  { label: "Fund", link: "fund" }
+  { label: "Fund", link: "fund" },
 ];
 
-function AppMenu({ anchorEl, handleClose, logged }: any) {
+function AppMenu({ anchorEl, handleClose, logged }) {
   return (
     <Menu
       id="simple-menu"
@@ -69,8 +76,8 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      {(logged ? LOGGED_MENU : LOGGED_OUT_MENU).map(el => (
-        <MenuItem onClick={handleClose}>
+      {(logged ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
+        <MenuItem onClick={handleClose} key={el.link}>
           <Link to={el.link}>{el.label}</Link>
         </MenuItem>
       ))}
@@ -82,7 +89,7 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
 export default function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -94,6 +101,11 @@ export default function App() {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             CrowdFund
+          </Typography>
+          <Typography variant="h6" className={classes.fundButton}>
+            <Button color="primary">
+              <Link to={"funds"}>Donate/Funds</Link>
+            </Button>
           </Typography>
           <IconButton
             edge="start"
