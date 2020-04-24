@@ -14,23 +14,25 @@ import Invest from "./views/invest";
 import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
+import WithUser from "./HOC/WithUser";
 import "./styles.css";
 
 import Firebase, { FirebaseContext } from './firebase';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
+
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   content: {
-    margin: "15px"
-  }
+    margin: "15px",
+  },
 }));
 
 const VIEWS = [
@@ -38,7 +40,14 @@ const VIEWS = [
   ["profile", Profile],
   ["invest", Invest],
   ["auth", Auth],
-  ["", Dashboard]
+  ["", Dashboard],
+];
+
+const LOGGED_OUT_MENU = [{ label: "Login", link: "auth" }];
+
+const LOGGED_MENU = [
+  { label: "Profile", link: "profile" },
+  { label: "Fund", link: "fund" },
 ];
 
 const Content = () => {
@@ -54,14 +63,7 @@ const Content = () => {
   );
 };
 
-const LOGGED_OUT_MENU = [{ label: "Login", link: "auth" }];
-
-const LOGGED_MENU = [
-  { label: "Profile", link: "profile" },
-  { label: "Fund", link: "fund" }
-];
-
-function AppMenu({ anchorEl, handleClose, logged }: any) {
+function AppMenu({ anchorEl, handleClose, user }: any) {
   return (
     <Menu
       id="simple-menu"
@@ -70,51 +72,49 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      {(logged ? LOGGED_MENU : LOGGED_OUT_MENU).map(el => (
+      {(user ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
         <MenuItem onClick={handleClose}>
           <Link to={el.link}>{el.label}</Link>
         </MenuItem>
       ))}
-      {logged && <MenuItem onClick={handleClose}>Logout</MenuItem>}
+      {user && <MenuItem onClick={handleClose}>Logout</MenuItem>}
     </Menu>
   );
 }
 
-export default function App() {
+export default WithUser(function App({ user }) {
+  console.log(user);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // @ts-ignore
-  const handleClick = event => {
+  //@ts-ignore
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
   return (
-    // @ts-ignore
-    <FirebaseContext.Provider value={new Firebase()}>
-      <Router>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              CrowdFund
-            </Typography>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={handleClick}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <AppMenu handleClose={handleClose} anchorEl={anchorEl} />
-        <div className={classes.content}>
-          <Content />
-        </div>
-      </Router>
-    </FirebaseContext.Provider>
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            CrowdFund
+          </Typography>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <AppMenu user={user} handleClose={handleClose} anchorEl={anchorEl} />
+      <div className={classes.content}>
+        <Content />
+      </div>
+    </Router>
   );
-}
+});
