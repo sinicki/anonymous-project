@@ -60,7 +60,7 @@ const Content = () => {
   );
 };
 
-function AppMenu({ anchorEl, handleClose, logged }: any) {
+function AppMenu({ anchorEl, handleClose, user }: any) {
   return (
     <Menu
       id="simple-menu"
@@ -69,17 +69,18 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      {(logged ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
+      {(user ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
         <MenuItem onClick={handleClose}>
           <Link to={el.link}>{el.label}</Link>
         </MenuItem>
       ))}
-      {logged && <MenuItem onClick={handleClose}>Logout</MenuItem>}
+      {user && <MenuItem onClick={handleClose}>Logout</MenuItem>}
     </Menu>
   );
 }
 
-export default WithUser(function App() {
+export default WithUser(function App({ user }) {
+  console.log(user);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   //@ts-ignore
@@ -107,7 +108,7 @@ export default WithUser(function App() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <AppMenu handleClose={handleClose} anchorEl={anchorEl} />
+      <AppMenu user={user} handleClose={handleClose} anchorEl={anchorEl} />
       <div className={classes.content}>
         <Content />
       </div>

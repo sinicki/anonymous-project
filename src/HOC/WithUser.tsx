@@ -1,15 +1,16 @@
 import React, { useEffect, useState, ReactElement } from "react";
+import UserContext from "../contexts/user";
 import { auth } from "../services/firebase";
 
 export default (Comp: (props: any) => ReactElement) => (props: any) => {
   const [state, setState] = useState<{
     authenticated: boolean;
     loading: boolean;
-    user?: any;
+    user: {} | null;
   }>({
     authenticated: false,
     loading: true,
-    user: undefined,
+    user: null,
   });
   useEffect(() => {
     auth().onAuthStateChanged((user) => {
@@ -24,10 +25,14 @@ export default (Comp: (props: any) => ReactElement) => (props: any) => {
         setState({
           authenticated: false,
           loading: false,
-          user: undefined,
+          user: null,
         });
       }
     });
   }, []);
-  return <Comp {...props} user={state.user} />;
+  return (
+    <UserContext.Provider value={state.user}>
+      <Comp {...props} user={state.user} />
+    </UserContext.Provider>
+  );
 };
