@@ -15,7 +15,6 @@ import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
-import { FirebaseContext, FirebaseInst } from "./firebase";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -91,30 +90,27 @@ export default WithUser(function App({ user }) {
     setAnchorEl(null);
   };
   return (
-    // @ts-ignore
-    <FirebaseContext.Provider value={FirebaseInst}>
-      <Router>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              CrowdFund
-            </Typography>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={handleClick}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <AppMenu user={user} handleClose={handleClose} anchorEl={anchorEl} />
-        <div className={classes.content}>
-          <Content />
-        </div>
-      </Router>
-    </FirebaseContext.Provider>
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            CrowdFund
+          </Typography>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <AppMenu user={user} handleClose={handleClose} anchorEl={anchorEl} />
+      <div className={classes.content}>
+        <Content />
+      </div>
+    </Router>
   );
 });

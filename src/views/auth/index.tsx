@@ -9,7 +9,7 @@ export default () => {
   async function googleSignIn() {
     try {
       // @ts-ignore
-      await firebaseContext.signinWithGoogle();
+      console.log(await firebaseContext.signinWithGoogle());
     } catch (error) {
       setState({ error: error.message });
     }

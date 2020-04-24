@@ -32,7 +32,6 @@ class Firebase {
   }
 
   signinWithGoogle() {
-    console.log(this);
     const provider = new this.auth.GoogleAuthProvider();
     return this.auth().signInWithPopup(provider);
   }
