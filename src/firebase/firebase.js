@@ -27,6 +27,15 @@ class Firebase {
     });
   };
 
+  getAllProjects = async (fundId) => {
+    let querySnapshot = await this.db.collection("projects").where("fund_id", "==", fundId).get();
+    let projectList = [];
+    querySnapshot.forEach((doc) => {
+      projectList.push(doc.data());
+  });
+    return projectList;
+  }
+
   signup(email, password) {
     return this.auth().createUserWithEmailAndPassword(email, password);
   }
