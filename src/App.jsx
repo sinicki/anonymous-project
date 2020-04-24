@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    "& a": {
+      color: "white",
+      textDecoration: "none",
+    },
   },
   content: {
     margin: "15px",
@@ -37,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     "& a": {
       color: "white",
+      textDecoration: "none",
     },
   },
 }));
@@ -114,7 +119,7 @@ export default WithUser(function App({ user }) {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            CrowdFund
+            <Link to="">CrowdFund</Link>
           </Typography>
           <Typography variant="h6" className={classes.fundButton}>
             <Button color="primary">
