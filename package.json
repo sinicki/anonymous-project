@@ -12,13 +12,15 @@
   "devDependencies": {
     "@types/react": "16.9.19",
     "@types/react-dom": "16.9.5",
+    "prettier": "^2.0.5",
     "typescript": "3.7.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pretty": "prettier --write \"./**/*.{ts,tsx,js,jsx,json,css,html}\""
   },
   "browserslist": [
     ">0.2%",
