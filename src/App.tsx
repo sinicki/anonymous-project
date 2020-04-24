@@ -15,12 +15,10 @@ import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
+import { FirebaseContext, FirebaseInst } from "./firebase";
 import "./styles.css";
 
-import Firebase, { FirebaseContext } from './firebase';
-
 const useStyles = makeStyles((theme) => ({
-
   root: {
     flexGrow: 1,
   },
@@ -83,7 +81,6 @@ function AppMenu({ anchorEl, handleClose, user }: any) {
 }
 
 export default WithUser(function App({ user }) {
-  console.log(user);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   //@ts-ignore
@@ -94,27 +91,30 @@ export default WithUser(function App({ user }) {
     setAnchorEl(null);
   };
   return (
-    <Router>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            CrowdFund
-          </Typography>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <AppMenu user={user} handleClose={handleClose} anchorEl={anchorEl} />
-      <div className={classes.content}>
-        <Content />
-      </div>
-    </Router>
+    // @ts-ignore
+    <FirebaseContext.Provider value={FirebaseInst}>
+      <Router>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              CrowdFund
+            </Typography>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={handleClick}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <AppMenu user={user} handleClose={handleClose} anchorEl={anchorEl} />
+        <div className={classes.content}>
+          <Content />
+        </div>
+      </Router>
+    </FirebaseContext.Provider>
   );
 });

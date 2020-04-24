@@ -1,16 +1,27 @@
-import React , { useContext } from "react";
-import {FirebaseContext} from '../../firebase';
+import React, { useContext, useState } from "react";
+import Button from "@material-ui/core/Button";
+import { FirebaseContext } from "../../firebase";
 
 export default () => {
+  const [state, setState] = useState<{ error?: string }>({ error: undefined });
+  const firebaseContext = useContext(FirebaseContext);
 
-  // example how to use
-  
-  // const firebaseContext = useContext(FirebaseContext);
+  async function googleSignIn() {
+    try {
+      // @ts-ignore
+      await firebaseContext.signinWithGoogle();
+    } catch (error) {
+      setState({ error: error.message });
+    }
+  }
 
-  // // @ts-ignore
-  // firebaseContext.saveToDatabase({
-  //   name: "john"
-  // });
-
-  return <div>Auth</div>;
+  return (
+    <div>
+      Auth
+      <div>
+        <Button onClick={googleSignIn}>Sign in with Google</Button>
+        <div>{state.error}</div>
+      </div>
+    </div>
+  );
 };

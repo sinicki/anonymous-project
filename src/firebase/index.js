@@ -1,4 +1,5 @@
-import FirebaseContext from './firebaseContext';
-import Firebase from './firebase';
+import FirebaseContext from "./firebaseContext";
+import Firebase from "./firebase";
 export default Firebase;
-export { FirebaseContext };
+const FirebaseInst = new Firebase();
+export { FirebaseContext, FirebaseInst };

@@ -1,8 +1,9 @@
-import React, { useEffect, useState, ReactElement } from "react";
+import React, { useEffect, useState, ReactElement, useContext } from "react";
 import UserContext from "../contexts/user";
-import { auth } from "../services/firebase";
+import { FirebaseContext } from "../firebase";
 
 export default (Comp: (props: any) => ReactElement) => (props: any) => {
+  const firebaseContext = useContext(FirebaseContext);
   const [state, setState] = useState<{
     authenticated: boolean;
     loading: boolean;
@@ -13,22 +14,24 @@ export default (Comp: (props: any) => ReactElement) => (props: any) => {
     user: null,
   });
   useEffect(() => {
-    auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        setState({
-          authenticated: true,
-          loading: false,
-          user,
-        });
-      } else {
-        setState({
-          authenticated: false,
-          loading: false,
-          user: null,
-        });
-      }
-    });
+    if (firebaseContext !== null)
+      // @ts-ignore
+      firebaseContext.auth().onAuthStateChanged((user: any) => {
+        console.log(user);
+        if (user) {
+          setState({
+            authenticated: true,
+            loading: false,
+            user,
+          });
+        } else {
+          setState({
+            authenticated: false,
+            loading: false,
+            user: null,
+          });
+        }
+      });
   }, []);
   return (
     <UserContext.Provider value={state.user}>
