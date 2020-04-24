@@ -5,9 +5,11 @@ import Invest from "./views/invest";
 import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
+import Funds from "./views/funds/index";
 import "./styles.css";
 
 const VIEWS = [
+  ["funds", Funds],
   ["companies", Companies],
   ["profile", Profile],
   ["invest", Invest],
