@@ -16,6 +16,8 @@ import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
 import "./styles.css";
 
+import Firebase, { FirebaseContext } from './firebase';
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -43,6 +45,7 @@ const Content = () => {
   return (
     <Switch>
       {VIEWS.map(([path, Comp]) => (
+        // @ts-ignore
         <Route key={path} path={`/${path}`}>
           <Comp />
         </Route>
@@ -80,6 +83,7 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
 export default function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // @ts-ignore
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -87,27 +91,30 @@ export default function App() {
     setAnchorEl(null);
   };
   return (
-    <Router>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            CrowdFund
-          </Typography>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <AppMenu handleClose={handleClose} anchorEl={anchorEl} />
-      <div className={classes.content}>
-        <Content />
-      </div>
-    </Router>
+    // @ts-ignore
+    <FirebaseContext.Provider value={new Firebase()}>
+      <Router>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              CrowdFund
+            </Typography>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={handleClick}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <AppMenu handleClose={handleClose} anchorEl={anchorEl} />
+        <div className={classes.content}>
+          <Content />
+        </div>
+      </Router>
+    </FirebaseContext.Provider>
   );
 }
