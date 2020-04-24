@@ -27,7 +27,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "testjest": "jest",
     "eject": "react-scripts eject",
     "pretty": "prettier --write \"./**/*.{ts,tsx,js,jsx,json,css,html}\""
   },
