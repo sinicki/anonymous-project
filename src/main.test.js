@@ -1,6 +1,7 @@
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import App from "./App";
+import React from "react";
 
 let container = null;
 beforeEach(() => {
@@ -20,8 +21,6 @@ describe("Fundation/Donation system", () => {
     act(() => {
       render(<App />, container);
     });
-
-    console.log(container.innerHTML);
 
     const buttonElement = document.querySelector('a[href="/funds"]');
     expect(container.innerHTML.includes("Hotels")).toBe(false);

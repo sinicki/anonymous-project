@@ -15,6 +15,8 @@ import Invest from "./views/invest";
 import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
+import WithUser from "./HOC/WithUser";
+import { FirebaseContext } from "./firebase";
 import Funds from "./views/funds/index";
 import "./styles.css";
 
@@ -48,10 +50,18 @@ const VIEWS = [
   ["", Dashboard],
 ];
 
+const LOGGED_OUT_MENU = [{ label: "Login", link: "auth" }];
+
+const LOGGED_MENU = [
+  { label: "Profile", link: "profile" },
+  { label: "Fund", link: "fund" },
+];
+
 const Content = () => {
   return (
     <Switch>
       {VIEWS.map(([path, Comp]) => (
+        // @ts-ignore
         <Route key={path} path={`/${path}`}>
           <Comp />
         </Route>
@@ -60,14 +70,8 @@ const Content = () => {
   );
 };
 
-const LOGGED_OUT_MENU = [{ label: "Login", link: "auth" }];
-
-const LOGGED_MENU = [
-  { label: "Profile", link: "profile" },
-  { label: "Fund", link: "fund" },
-];
-
-function AppMenu({ anchorEl, handleClose, logged }) {
+function AppMenu({ anchorEl, handleClose, user }) {
+  const firebase = React.useContext(FirebaseContext);
   return (
     <Menu
       id="simple-menu"
@@ -76,17 +80,27 @@ function AppMenu({ anchorEl, handleClose, logged }) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      {(logged ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
+      {(user ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
         <MenuItem onClick={handleClose} key={el.link}>
           <Link to={el.link}>{el.label}</Link>
         </MenuItem>
       ))}
-      {logged && <MenuItem onClick={handleClose}>Logout</MenuItem>}
+      {user && (
+        <MenuItem
+          onClick={(ev) => {
+            handleClose(ev);
+            // @ts-ignore
+            if (firebase !== null) firebase.signout();
+          }}
+        >
+          Logout
+        </MenuItem>
+      )}
     </Menu>
   );
 }
 
-export default function App() {
+export default WithUser(function App({ user }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
@@ -118,10 +132,10 @@ export default function App() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <AppMenu handleClose={handleClose} anchorEl={anchorEl} />
+      <AppMenu user={user} handleClose={handleClose} anchorEl={anchorEl} />
       <div className={classes.content}>
         <Content />
       </div>
     </Router>
   );
-}
+});
