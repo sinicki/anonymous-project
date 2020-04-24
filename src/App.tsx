@@ -12,7 +12,7 @@ const VIEWS = [
   ["profile", Profile],
   ["invest", Invest],
   ["auth", Auth],
-  ["", Dashboard]
+  ["", Dashboard],
 ];
 
 const Content = () => {
