@@ -16,19 +16,19 @@ import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
 import "./styles.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   content: {
-    margin: "15px"
-  }
+    margin: "15px",
+  },
 }));
 
 const VIEWS = [
@@ -36,13 +36,21 @@ const VIEWS = [
   ["profile", Profile],
   ["invest", Invest],
   ["auth", Auth],
-  ["", Dashboard]
+  ["", Dashboard],
+];
+
+const LOGGED_OUT_MENU = [{ label: "Login", link: "auth" }];
+
+const LOGGED_MENU = [
+  { label: "Profile", link: "profile" },
+  { label: "Fund", link: "fund" },
 ];
 
 const Content = () => {
   return (
     <Switch>
       {VIEWS.map(([path, Comp]) => (
+        // @ts-ignore
         <Route key={path} path={`/${path}`}>
           <Comp />
         </Route>
@@ -50,13 +58,6 @@ const Content = () => {
     </Switch>
   );
 };
-
-const LOGGED_OUT_MENU = [{ label: "Login", link: "auth" }];
-
-const LOGGED_MENU = [
-  { label: "Profile", link: "profile" },
-  { label: "Fund", link: "fund" }
-];
 
 function AppMenu({ anchorEl, handleClose, logged }: any) {
   return (
@@ -67,7 +68,7 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      {(logged ? LOGGED_MENU : LOGGED_OUT_MENU).map(el => (
+      {(logged ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
         <MenuItem onClick={handleClose}>
           <Link to={el.link}>{el.label}</Link>
         </MenuItem>
@@ -80,7 +81,8 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
 export default function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = event => {
+  //@ts-ignore
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
