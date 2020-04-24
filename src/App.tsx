@@ -14,6 +14,7 @@ import Invest from "./views/invest";
 import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
+import WithUser from "./HOC/WithUser";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -78,7 +79,7 @@ function AppMenu({ anchorEl, handleClose, logged }: any) {
   );
 }
 
-export default function App() {
+export default WithUser(function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   //@ts-ignore
@@ -112,4 +113,4 @@ export default function App() {
       </div>
     </Router>
   );
-}
+});
