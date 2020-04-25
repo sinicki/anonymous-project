@@ -9,13 +9,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 
 import MenuIcon from "@material-ui/icons/Menu";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { useLocation } from "react-router";
 import Companies from "./views/companies";
 import Invest from "./views/invest";
 import Profile from "./views/profile";
@@ -79,6 +74,12 @@ const LOGGED_MENU = [
 ];
 
 const Content = () => {
+  console.log("called");
+
+  const location = useLocation();
+  React.useEffect(() => {
+    focusByHash();
+  }, [location]);
   return (
     <Switch>
       {VIEWS.map(([path, Comp]) => (
@@ -131,13 +132,6 @@ export default WithUser(function App({ user }) {
     setAnchorEl(null);
   };
 
-  console.log("called");
-
-
-  React.useEffect(() => {
-    console.log('effect');
-    focusByHash();
-  });
   return (
     <Router>
       <AppBar position="static">

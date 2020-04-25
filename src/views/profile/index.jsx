@@ -1,13 +1,8 @@
-import MaterialButton from "@material-ui/core/Button";
-import Button from "@material-ui/core/Button";
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-
-import LinearProgress from "@material-ui/core/LinearProgress";
 import { useLocation } from "react-router-dom";
 
 import Paper from "@material-ui/core/Paper";
@@ -51,7 +46,7 @@ export default function Profile(props) {
         </Grid>
         <Grid item xs={12} className={""} align="center">
           <Typography align={"center"} variant="h4" gutterBottom />
-          <Typography variant={"h"}>Donations history:</Typography>
+          <Typography variant={"h6"}>Donations history:</Typography>
           <Typography align={"center"} variant="h4" gutterBottom />
         </Grid>
       </Grid>

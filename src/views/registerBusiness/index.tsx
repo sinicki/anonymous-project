@@ -1,10 +1,10 @@
 import React from "react";
-import { Input, Card } from "@material-ui/core";
+import { Card } from "@material-ui/core";
 import Register from "./register";
 import {
   BlockDisplay,
-  BlockType,
   BlockSize,
+  BlockType,
 } from "../../sharedComponents/Block";
 
 export default () => {
