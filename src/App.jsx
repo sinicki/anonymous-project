@@ -17,7 +17,6 @@ import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
 import { FirebaseContext } from "./firebase";
 import Funds from "./views/funds/index";
-import ProjectModal from "./modals/ProjectModal";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({

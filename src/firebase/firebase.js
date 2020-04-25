@@ -37,14 +37,14 @@ class Firebase {
       projectList.push(doc.data());
     });
     return projectList;
-  } 
+  };
 
   getFund = async (fundId) => {
     let doc = await this.db.collection("funds").doc(fundId).get();
     let data = doc.data();
-    console.log(data)
+    console.log(data);
     return data;
-  }
+  };
 
   signup(email, password) {
     return this.auth().createUserWithEmailAndPassword(email, password);

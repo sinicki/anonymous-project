@@ -2,7 +2,7 @@ import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Route, Switch } from "react-router-dom";
 
-import { FundGrid } from "./fundGrid";
+import FundGrid from "./fundGrid";
 import { FundPage } from "./fundPage";
 
 const useStyles = makeStyles((theme) => ({

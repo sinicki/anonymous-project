@@ -1,24 +1,25 @@
 import React from "react";
 import ProjectController from "./projectController.js";
-import DonateController from './donateController.js'
+import DonateController from "./donateController.js";
 import {
   BlockDisplay,
-  BlockType,
   BlockSize,
+  BlockType,
 } from "../../sharedComponents/Block";
 
 export default () => {
-
-  let fundName = "restaurants"
+  let fundName = "restaurants";
 
   return (
     <div>
-      <DonateController fundName = {fundName}></DonateController>
+      <DonateController fundName={fundName}></DonateController>
       <BlockDisplay
         blocks={[
           {
             size: BlockSize.small,
-            content: <ProjectController fundName = {fundName}></ProjectController>,
+            content: (
+              <ProjectController fundName={fundName}></ProjectController>
+            ),
             title: "Projects",
             type: BlockType.plain,
           },

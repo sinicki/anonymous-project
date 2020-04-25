@@ -132,6 +132,10 @@ export function FundPage(props) {
                 name: "Gdansk Sea",
                 description: "Near See",
               },
+              {
+                name: "Wroclaw Music",
+                description: "Game Symphony",
+              },
             ]}
             ItemComponent={({ name, description }) => (
               <Paper className={classes.projectCard}>

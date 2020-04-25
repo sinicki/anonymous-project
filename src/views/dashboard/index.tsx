@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Block,
   BlockDisplay,
-  BlockType,
   BlockSize,
+  BlockType,
 } from "../../sharedComponents/Block";
 
 const useStyles = makeStyles(() => ({

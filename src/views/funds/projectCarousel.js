@@ -51,7 +51,7 @@ export function ProjectCarousel({ title, items, ItemComponent }) {
         >
           {shownItems.map((itemProps, i) => (
             <div
-              key={itemProp.id}
+              key={itemProps.id}
               style={{
                 position: "relative",
                 left: -180 * index,
