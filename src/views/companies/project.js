@@ -24,9 +24,7 @@ export default (props) => {
       )}
       <p>Project Name: {props.element.name}</p>
       <p>Project Cost: {props.element.amount_required}</p>
-      <Company
-        Tax_id={props.element.tax_id}
-      ></Company>
+      <Company Tax_id={props.element.tax_id}></Company>
     </div>
   );
 };

@@ -17,7 +17,6 @@ import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
 import { FirebaseContext } from "./firebase";
 import Funds from "./views/funds/index";
-import ProjectModal from "./modals/ProjectModal";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -123,7 +122,7 @@ export default WithUser(function App({ user }) {
           </Typography>
           <Typography variant="h6" className={classes.fundButton}>
             <Button color="primary">
-              <Link to={"funds"}>Donate/Funds</Link>
+              <Link to={"/funds"}>Donate/Funds</Link>
             </Button>
           </Typography>
           <IconButton
