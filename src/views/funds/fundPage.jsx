@@ -1,6 +1,6 @@
 import MaterialButton from "@material-ui/core/Button";
 import Button from "@material-ui/core/Button";
-import React from "react";
+import React, { useContext }  from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -11,6 +11,9 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import { useLocation } from "react-router-dom";
 import { ProjectCarousel } from "./projectCarousel";
 import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+
+import {FirebaseContext} from '../../firebase';
 
 const useStyles = makeStyles({
   root: {},
@@ -59,7 +62,12 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 export function FundPage(props) {
+
+  const firebaseContext = useContext(FirebaseContext);
+
   const location = useLocation();
   const classes = useStyles();
   const pathElements = location.pathname.split("/");
@@ -70,6 +78,16 @@ export function FundPage(props) {
     return null;
   }
   const [name, imageUrl] = fund;
+  let amount = 0;
+
+  let donate = () => {
+    let currentUserEmail = firebaseContext.getCurrentUser().email  
+    firebaseContext.addDonation({
+      amount_donated: amount,
+      email: currentUserEmail,
+      funds_id: name
+    })
+  }
 
   return (
     <Container maxWidth="sm">
@@ -85,7 +103,8 @@ export function FundPage(props) {
             value={50}
             className={classes.progress}
           />
-          <MaterialButton className={classes.roundedButton}>
+          <TextField id="donation-amount" label="Amount" onChange={event => amount = event.target.value} />
+          <MaterialButton onClick={donate} className={classes.roundedButton}>
             Donate
           </MaterialButton>
         </Grid>
