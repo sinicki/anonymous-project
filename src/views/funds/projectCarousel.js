@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 export function ProjectCarousel({ title, items, ItemComponent }) {
   const [index, setIndex] = React.useState(0);
   const shownItems = items
-    // .slice(index, index + 3)
+
     .map((x) => ({ ...x, id: x.name }));
   while (shownItems.length < 3) {
     shownItems.push({ id: shownItems.length });
@@ -65,7 +65,7 @@ export function ProjectCarousel({ title, items, ItemComponent }) {
         <IconButton
           disabled={index + 3 >= items.length}
           onClick={() => {
-            if (index + 1 >= items.length - 3) {
+            if (index + 1 <= items.length - 3) {
               setIndex(index + 1);
             }
           }}
