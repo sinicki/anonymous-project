@@ -34,7 +34,6 @@ interface Currency{
 }
   
 interface Funds{
-    currency_id: String;
     amount_donated: Number;
     description: String;
     start_date: Date;
@@ -44,4 +43,5 @@ interface Dotations{
     users_id: String;
     funds_id: String;
     amount_donated: Number;
+    currency_id: String;
 }
