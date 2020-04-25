@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => {
       alignItems: "center",
       justifyContent: "center",
       fontSize: "20px",
+      margin: "20px 0 0 0",
     },
 
     blockContent: {
@@ -113,9 +114,16 @@ const BlockImage = ({ background, clas }: any) => {
 
 const BlockTitle = ({ content, title, size, clas }: any) => {
   const classes = useStyles();
+  console.log(size);
   return (
     <div className={clas}>
-      <div className={classes.blockTitle}>
+      <div
+        className={
+          size === BlockSize.superSmall
+            ? classes.blockSmallTitle
+            : classes.blockTitle
+        }
+      >
         <Typography align={"center"} variant="h4" gutterBottom>
           {title}
         </Typography>
@@ -164,7 +172,7 @@ const BlockComp = ({ type, size, ...rest }: Block) => {
   const clas = classes[SIZE_MAP[size]];
   return (
     <div className={classes.block}>
-      <Comp {...rest} clas={clas} type={type} />
+      <Comp {...rest} clas={clas} size={size} type={type} />
     </div>
   );
 };
