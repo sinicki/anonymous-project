@@ -20,12 +20,22 @@ class Firebase {
     this.auth = firebase.auth;
   }
 
+  getCurrentUser() {
+    return this.auth().currentUser;
+  }
+
   //example
   saveToDatabase = (fund) => {
     this.db.collection("funds").add({
       fund,
     });
   };
+
+  addDonation = (donation) => {
+    this.db.collection("donations").add(
+      donation,
+    );
+  }
 
   getAllProjects = async (fundId) => {
     let querySnapshot = await this.db
