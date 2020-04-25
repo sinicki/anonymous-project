@@ -1,8 +1,6 @@
 import MaterialButton from "@material-ui/core/Button";
 import Button from "@material-ui/core/Button";
-import React from "react";
-import React, { useContext }  from "react";
-import Container from "@material-ui/core/Container";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -14,7 +12,7 @@ import { ProjectCarousel } from "./projectCarousel";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 
-import {FirebaseContext} from '../../firebase';
+import { FirebaseContext } from "../../firebase";
 import {
   BlockDisplay,
   BlockSize,
@@ -73,10 +71,7 @@ const useStyles = makeStyles({
   },
 });
 
-
-
 export function FundPage(props) {
-
   const firebaseContext = useContext(FirebaseContext);
 
   const location = useLocation();
@@ -92,49 +87,55 @@ export function FundPage(props) {
   let amount = 0;
 
   let donate = () => {
-    let currentUserEmail = firebaseContext.getCurrentUser().email
+    let currentUserEmail = firebaseContext.getCurrentUser().email;
     firebaseContext.addDonation({
       amount_donated: parseInt(amount),
       email: currentUserEmail,
-      funds_id: name.toLowerCase()
-    })
-  }
+      funds_id: name.toLowerCase(),
+    });
+  };
 
-  let fundDetail = <div className={classes.firstRow}>
-    <div style={{ width: "100%", padding: "15px" }}>
-      <Grid item xs={12} sm={6} className={classes.mainGrid}>
-        <Typography variant="h6">{name} fund</Typography>
-        <Typography variant="h6">Amount rest: ****PLN</Typography>
-        <Typography variant="h6">Total amount: ****PLN</Typography>
-        <LinearProgress
-          variant="determinate"
-          color="secondary"
-          value={50}
-          className={classes.progress}
-        />
-      <TextField id="donation-amount" label="Amount" onChange={event => amount = event.target.value} />
-      <MaterialButton onClick={donate} className={classes.roundedButton}>
-        Donate
-      </MaterialButton>
-      </Grid>
+  let fundDetail = (
+    <div className={classes.firstRow}>
+      <div style={{ width: "100%", padding: "15px" }}>
+        <Grid item xs={12} sm={6} className={classes.mainGrid}>
+          <Typography variant="h6">{name} fund</Typography>
+          <Typography variant="h6">Amount rest: ****PLN</Typography>
+          <Typography variant="h6">Total amount: ****PLN</Typography>
+          <LinearProgress
+            variant="determinate"
+            color="secondary"
+            value={50}
+            className={classes.progress}
+          />
+          <TextField
+            id="donation-amount"
+            label="Amount"
+            onChange={(event) => (amount = event.target.value)}
+          />
+          <MaterialButton onClick={donate} className={classes.roundedButton}>
+            Donate
+          </MaterialButton>
+        </Grid>
+      </div>
+      <div
+        style={{
+          width: "100%",
+          padding: "15px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Grid item xs={12} sm={6} className={""}>
+          <CardMedia
+            className={classes.picture}
+            image={imageUrl}
+            title={name}
+          />
+        </Grid>
+      </div>
     </div>
-    <div
-      style={{
-        width: "100%",
-        padding: "15px",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Grid item xs={12} sm={6} className={""}>
-        <CardMedia
-          className={classes.picture}
-          image={imageUrl}
-          title={name}
-        />
-      </Grid>
-    </div>
-    </div>
+  );
 
   return (
     <BlockDisplay
@@ -143,9 +144,7 @@ export function FundPage(props) {
           type: BlockType.title,
           title: "Overview",
           size: BlockSize.small,
-          content: (
-            fundDetail
-          ),
+          content: fundDetail,
         },
         {
           type: BlockType.title,
