@@ -11,6 +11,11 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import { useLocation } from "react-router-dom";
 import { ProjectCarousel } from "./projectCarousel";
 import Paper from "@material-ui/core/Paper";
+import {
+  BlockDisplay,
+  BlockSize,
+  BlockType,
+} from "../../sharedComponents/Block";
 
 const useStyles = makeStyles({
   root: {},
@@ -57,6 +62,11 @@ const useStyles = makeStyles({
   text: {
     fontSize: 12,
   },
+  firstRow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 });
 
 export function FundPage(props) {
@@ -72,104 +82,134 @@ export function FundPage(props) {
   const [name, imageUrl] = fund;
 
   return (
-    <Container maxWidth="sm">
-      <Typography align={"center"} variant="h4" gutterBottom />
-      <Grid container spacing={3} justify="center" alignItems="center">
-        <Grid item xs={12} sm={6} className={classes.mainGrid}>
-          <Typography variant="h6">{name} fund</Typography>
-          <Typography variant="h6">Amount rest: ****PLN</Typography>
-          <Typography variant="h6">Total amount: ****PLN</Typography>
-          <LinearProgress
-            variant="determinate"
-            color="secondary"
-            value={50}
-            className={classes.progress}
-          />
-          <MaterialButton className={classes.roundedButton}>
-            Donate
-          </MaterialButton>
-        </Grid>
-        <Grid item xs={12} sm={6} className={""}>
-          <CardMedia
-            className={classes.picture}
-            image={imageUrl}
-            title={name}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <ProjectCarousel
-            title="Funded Projects"
-            items={[
-              { name: "Ryba", description: "near the shore" },
-              {
-                name: "Deer",
-                description: "in the forest",
-              },
-            ]}
-            ItemComponent={(props) => (
-              <Paper className={classes.projectCard}>
-                {JSON.stringify(props)}
-              </Paper>
-            )}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <ProjectCarousel
-            title="Waiting for fundation"
-            comment="Here some project which is still waiting for you"
-            items={[
-              { name: "Forest cafe", description: "Near Notecka Puszcza" },
-              {
-                name: "London Cafe",
-                description: "In center of Warsaw",
-              },
-              {
-                name: "Kraków Nights",
-                description: "Near royal palace",
-              },
-              {
-                name: "Gdansk Sea",
-                description: "Near See",
-              },
-              {
-                name: "Wroclaw Music",
-                description: "Game Symphony",
-              },
-            ]}
-            ItemComponent={({ name, description }) => (
-              <Paper className={classes.projectCard}>
-                <Typography>
+    <BlockDisplay
+      blocks={[
+        {
+          type: BlockType.title,
+          title: "Overview",
+          size: BlockSize.small,
+          content: (
+            <div className={classes.firstRow}>
+              <div style={{ width: "100%", padding: "15px" }}>
+                <Grid item xs={12} sm={6} className={classes.mainGrid}>
+                  <Typography variant="h6">{name} fund</Typography>
+                  <Typography variant="h6">Amount rest: ****PLN</Typography>
+                  <Typography variant="h6">Total amount: ****PLN</Typography>
+                  <LinearProgress
+                    variant="determinate"
+                    color="secondary"
+                    value={50}
+                    className={classes.progress}
+                  />
+                  <MaterialButton className={classes.roundedButton}>
+                    Donate
+                  </MaterialButton>
+                </Grid>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  padding: "15px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Grid item xs={12} sm={6} className={""}>
                   <CardMedia
-                    component="img"
-                    className={classes.cardPicture}
-                    image={
-                      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Igel.JPG/305px-Igel.JPG"
-                    }
+                    className={classes.picture}
+                    image={imageUrl}
                     title={name}
                   />
-                </Typography>
-                <Typography variant="h6" className={classes.text}>
-                  Name:
-                </Typography>
-                <Typography className={classes.text}>{name}</Typography>
-                <Typography variant="h6" className={classes.text}>
-                  Description:
-                </Typography>
-                <Typography className={classes.text}>{description}</Typography>
-                <Button
-                  className={classes.voteButton}
-                  onClick={() => {
-                    console.log("Vote for " + name);
-                  }}
-                >
-                  Vote
-                </Button>
-              </Paper>
-            )}
-          />
-        </Grid>
-      </Grid>
-    </Container>
+                </Grid>
+              </div>
+            </div>
+          ),
+        },
+        {
+          type: BlockType.title,
+          size: BlockSize.middle,
+          title: "Funded projects",
+          content: (
+            <Grid item xs={12}>
+              <ProjectCarousel
+                items={[
+                  { name: "Ryba", description: "near the shore" },
+                  {
+                    name: "Deer",
+                    description: "in the forest",
+                  },
+                ]}
+                ItemComponent={(props) => (
+                  <Paper className={classes.projectCard}>
+                    {JSON.stringify(props)}
+                  </Paper>
+                )}
+              />
+            </Grid>
+          ),
+        },
+        {
+          type: BlockType.title,
+          size: BlockSize.middle,
+          title: "Waiting for fundation",
+          content: (
+            <ProjectCarousel
+              comment="Here some project which is still waiting for you"
+              items={[
+                { name: "Forest cafe", description: "Near Notecka Puszcza" },
+                {
+                  name: "London Cafe",
+                  description: "In center of Warsaw",
+                },
+                {
+                  name: "Kraków Nights",
+                  description: "Near royal palace",
+                },
+                {
+                  name: "Gdansk Sea",
+                  description: "Near See",
+                },
+                {
+                  name: "Wroclaw Music",
+                  description: "Game Symphony",
+                },
+              ]}
+              ItemComponent={({ name, description }) => (
+                <Paper className={classes.projectCard}>
+                  <Typography>
+                    <CardMedia
+                      component="img"
+                      className={classes.cardPicture}
+                      image={
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Igel.JPG/305px-Igel.JPG"
+                      }
+                      title={name}
+                    />
+                  </Typography>
+                  <Typography variant="h6" className={classes.text}>
+                    Name:
+                  </Typography>
+                  <Typography className={classes.text}>{name}</Typography>
+                  <Typography variant="h6" className={classes.text}>
+                    Description:
+                  </Typography>
+                  <Typography className={classes.text}>
+                    {description}
+                  </Typography>
+                  <Button
+                    className={classes.voteButton}
+                    onClick={() => {
+                      console.log("Vote for " + name);
+                    }}
+                  >
+                    Vote
+                  </Button>
+                </Paper>
+              )}
+            />
+          ),
+        },
+      ]}
+    />
   );
 }
