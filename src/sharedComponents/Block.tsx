@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 
 export enum BlockType {
   title,
@@ -115,7 +116,9 @@ const BlockTitle = ({ content, title, size, clas }: any) => {
   return (
     <div className={clas}>
       <div className={classes.blockTitle}>
-        <span role="title">{title}</span>
+        <Typography align={"center"} variant="h4" gutterBottom>
+          {title}
+        </Typography>
       </div>
       <div className={classes.blockContent}>{content}</div>
     </div>
