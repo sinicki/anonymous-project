@@ -21,6 +21,7 @@ import Invest from "./views/invest";
 import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
+import RegisterBusiness from "./views/registerBusiness";
 import WithUser from "./HOC/WithUser";
 import { FirebaseContext } from "./firebase";
 import Funds from "./views/funds/index";
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const VIEWS = [
+  ["registerBusiness", RegisterBusiness],
   ["funds", Funds],
   ["companies", Companies],
   ["profile", Profile],
