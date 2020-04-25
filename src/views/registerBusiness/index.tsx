@@ -1,6 +1,37 @@
 import React from "react";
-import {} from "@material-ui/core";
+import { Input, Card } from "@material-ui/core";
+import Register from "./register";
+import {
+  BlockDisplay,
+  BlockType,
+  BlockSize,
+} from "../../sharedComponents/Block";
 
 export default () => {
-  return <div>Register</div>;
+  return (
+    <BlockDisplay
+      blocks={[
+        {
+          type: BlockType.plain,
+          size: BlockSize.full,
+          content: (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div style={{ maxWidth: "720px", minWidth: "320px" }}>
+                <Card>
+                  <Register />
+                </Card>
+              </div>
+            </div>
+          ),
+          title: "Register your business",
+        },
+      ]}
+    />
+  );
 };

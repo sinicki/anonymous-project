@@ -13,6 +13,7 @@ export enum BlockSize {
   superSmall,
   small,
   medium,
+  full,
   // large,
   // superLarge,
 }
@@ -45,6 +46,10 @@ const useStyles = makeStyles((theme) => {
     },
     blockMedium: {
       height: MEDIUM_HEIGHT,
+    },
+    blockFull: {
+      height: "100%",
+      minHeight: "calc(100vh - 64px)",
     },
 
     blockTitle: {
@@ -98,6 +103,8 @@ const SIZE_MAP = {
   [BlockSize.small]: "blockSmall",
 
   [BlockSize.medium]: "blockMedium",
+
+  [BlockSize.full]: "blockFull",
 };
 
 const BlockImage = ({ background, clas }: any) => {
