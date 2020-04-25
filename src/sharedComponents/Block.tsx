@@ -2,27 +2,50 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 export enum BlockType {
-  small,
-  large,
-  full,
+  title,
   image,
-  plainSmall,
+  imageTitle,
+  plain,
+}
+
+export enum BlockSize {
+  superSmall,
+  small,
+  medium,
+  // large,
+  // superLarge,
 }
 
 export interface Block {
-  title: string;
-  content: any;
+  title: any;
+  content?: any;
+  size: BlockSize;
   type: BlockType;
+  background?: string;
 }
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme);
+  const SUPER_SMALL = "200px";
+  const SMALL_HEIGHT = "400px";
+  const MEDIUM_HEIGHT = "600px";
   return {
     block: {
       background: "white",
       fontFamily: "Arial, Helvetica, sans-serif",
       color: "#434343",
+      overflow: "hidden",
     },
+
+    blockSuperSmall: {
+      height: SUPER_SMALL,
+    },
+    blockSmall: {
+      height: SMALL_HEIGHT,
+    },
+    blockMedium: {
+      height: MEDIUM_HEIGHT,
+    },
+
     blockTitle: {
       height: "100px",
       display: "flex",
@@ -30,6 +53,14 @@ const useStyles = makeStyles((theme) => {
       justifyContent: "center",
       fontSize: "40px",
     },
+    blockSmallTitle: {
+      height: "50px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: "20px",
+    },
+
     blockContent: {
       padding: "25px 125px",
     },
@@ -37,17 +68,20 @@ const useStyles = makeStyles((theme) => {
       display: "grid",
       gridGap: "1px",
     },
-    blockFull: {
-      height: "100vh",
-    },
+
     blockImage: {
-      height: "600px",
+      height: MEDIUM_HEIGHT,
       width: "100%",
     },
-    blockSmall: {
-      height: "400px",
-      overflow: "hidden",
+    blockImageTitle: {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "white",
+      position: "relative",
     },
+
     flexCenter: {
       display: "flex",
       justifyContent: "center",
@@ -56,27 +90,30 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const BlockImage = ({ content }: Block) => {
+const SIZE_MAP = {
+  [BlockSize.superSmall]: "blockSuperSmall",
+
+  [BlockSize.small]: "blockSmall",
+
+  [BlockSize.medium]: "blockMedium",
+};
+
+const BlockImage = ({ background, clas }: any) => {
   const classes = useStyles();
   return (
     <div
-      className={classes.blockImage}
+      className={clas}
       style={{
-        background: `url(${process.env.PUBLIC_URL + content})`,
+        background: `url(${process.env.PUBLIC_URL + background})`,
       }}
     />
   );
 };
 
-const BlockFull = ({ content }: Block) => {
-  const classes = useStyles();
-  return <div className={classes.blockFull}>{content}</div>;
-};
-
-const BlockSmall = ({ content, title }: Block) => {
+const BlockTitle = ({ content, title, size, clas }: any) => {
   const classes = useStyles();
   return (
-    <div className={classes.blockSmall}>
+    <div className={clas}>
       <div className={classes.blockTitle}>
         <span role="title">{title}</span>
       </div>
@@ -85,41 +122,46 @@ const BlockSmall = ({ content, title }: Block) => {
   );
 };
 
-const BlockLarge = ({ content, title }: Block) => {
+const BlockPlain = ({ content, clas }: any) => {
   const classes = useStyles();
   return (
-    <>
-      <div className={classes.blockTitle}>
-        <span role="title">{title}</span>
-      </div>
+    <div className={clas}>
       <div className={classes.blockContent}>{content}</div>
-    </>
+    </div>
   );
 };
 
-const BlockPlainSmall = ({ content }: Block) => {
+const BlockImageTitle = ({ background, title, content, size, clas }: any) => {
   const classes = useStyles();
   return (
-    <div className={classes.blockSmall}>
-      <div className={classes.blockContent}>{content}</div>
+    <div
+      className={`${clas} ${classes.blockImageTitle}`}
+      style={{
+        background: `url(${process.env.PUBLIC_URL + background})`,
+      }}
+    >
+      <span>{title}</span>
+      {content}
     </div>
   );
 };
 
 const CompMap = {
-  [BlockType.full]: BlockFull,
-  [BlockType.small]: BlockSmall,
-  [BlockType.large]: BlockLarge,
+  [BlockType.title]: BlockTitle,
   [BlockType.image]: BlockImage,
-  [BlockType.plainSmall]: BlockPlainSmall,
+  [BlockType.imageTitle]: BlockImageTitle,
+  [BlockType.plain]: BlockPlain,
 };
 
-const BlockComp = ({ type, ...rest }: Block) => {
+const BlockComp = ({ type, size, ...rest }: Block) => {
   const classes = useStyles();
+
   const Comp = CompMap[type];
+  // @ts-ignore
+  const clas = classes[SIZE_MAP[size]];
   return (
     <div className={classes.block}>
-      <Comp {...rest} type={type} />
+      <Comp {...rest} clas={clas} type={type} />
     </div>
   );
 };

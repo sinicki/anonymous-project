@@ -12,14 +12,16 @@ export default (props) => {
       }}
       className="ProjectTile"
     >
-      <ProjectModal
-        open={open}
-        project={props.element}
-        handleClose={(ev) => {
-          ev.stopPropagation();
-          setOpen(false);
-        }}
-      />
+      {props.element && (
+        <ProjectModal
+          open={open}
+          project={props.element}
+          handleClose={(ev) => {
+            ev.stopPropagation();
+            setOpen(false);
+          }}
+        />
+      )}
       <p>Project Name: {props.element.Name}</p>
       <p>Project Description: {props.element.Description}</p>
       <p>Project Cost: {props.element.Cost}</p>

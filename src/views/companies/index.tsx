@@ -1,6 +1,10 @@
 import React from "react";
 import ProjectController from "./projectController.js";
-import { BlockDisplay, BlockType } from "../../sharedComponents/Block";
+import {
+  BlockDisplay,
+  BlockType,
+  BlockSize,
+} from "../../sharedComponents/Block";
 
 export default () => {
   return (
@@ -8,9 +12,10 @@ export default () => {
       <BlockDisplay
         blocks={[
           {
+            size: BlockSize.small,
             content: <ProjectController></ProjectController>,
             title: "Projects",
-            type: BlockType.plainSmall,
+            type: BlockType.plain,
           },
         ]}
       />
