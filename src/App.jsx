@@ -123,7 +123,7 @@ export default WithUser(function App({ user }) {
           </Typography>
           <Typography variant="h6" className={classes.fundButton}>
             <Button color="primary">
-              <Link to={"funds"}>Donate/Funds</Link>
+              <Link to={"/funds"}>Donate/Funds</Link>
             </Button>
           </Typography>
           <IconButton

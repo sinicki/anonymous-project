@@ -28,8 +28,13 @@ const useStyles = makeStyles({
     paddingLeft: 15,
     paddingRight: 15,
     minWidth: 100,
+    "& a": { textDecoration: "none" },
     "& :hover": {
       backgroundColor: "yellow",
+      padding: 7,
+      paddingLeft: 15,
+      paddingRight: 15,
+      minWidth: 100,
     },
   },
 });
@@ -53,7 +58,7 @@ export function FundCard({ name, imageUrl }) {
           console.log(e);
         }}
       >
-        {name}
+        <a href={"funds/" + name}>{name}</a>
       </Button>
     </Paper>
   );
