@@ -1,9 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -38,9 +34,7 @@ const useStyles = makeStyles({
     left: 40,
     zIndex: "3",
   },
-  centralized: {
-
-  },
+  centralized: {},
   root: {
     display: "flex",
     alignItems: "center",
@@ -80,7 +74,7 @@ export default function Funds() {
   return (
     <Container maxWidth="sm">
       <Typography align={"center"} variant="h4" gutterBottom>
-      Our open funds
+        Our open funds
       </Typography>
       <Grid container spacing={10} justify="center" alignItems="center">
         {FUNDS.map(([name, imageUrl]) => (
@@ -89,7 +83,6 @@ export default function Funds() {
               className={classes.root + " " + classes.centralized}
               key={name}
               style={{
-
                 backgroundImage: `url("${imageUrl}")`,
               }}
             >
