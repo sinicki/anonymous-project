@@ -1,5 +1,22 @@
-.ProjectContainer {
+.FundView {
+    display:grid;
+    grid-auto-columns: 1fr;
+    background-color: white
+}
 
+.grid-item-1 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    padding: 1.3rem 3rem;
+}
+
+.grid-item-2 {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    height: 80%;
+    width: 20%;
+    padding: 1.3rem 3rem;
+    margin: auto;
 }
 
 

@@ -12,7 +12,7 @@ class ProjectController extends Component {
 
     componentDidMount() {
         let value = this.context;
-        value.getAllProjects("lQbjexa1WjJBhQ9IU4v1").then(list => {
+        value.getAllProjects(this.props.fundName).then(list => {
             this.setState(prevState => {
                 return {
                     loading: false,
