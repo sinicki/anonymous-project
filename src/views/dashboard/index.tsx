@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Block,
   BlockDisplay,
-  BlockType,
   BlockSize,
+  BlockType,
 } from "../../sharedComponents/Block";
 
 const useStyles = makeStyles(() => ({
@@ -62,7 +62,7 @@ const Team = () => {
           <span>Team members:</span>
         </div>
         {TEAM.map((tm) => (
-          <TeamMember name={tm} />
+          <TeamMember name={tm} key={tm} />
         ))}
       </div>
     </div>

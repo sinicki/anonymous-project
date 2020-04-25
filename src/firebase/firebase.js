@@ -20,12 +20,22 @@ class Firebase {
     this.auth = firebase.auth;
   }
 
+  getCurrentUser() {
+    return this.auth().currentUser;
+  }
+
   //example
   saveToDatabase = (fund) => {
     this.db.collection("funds").add({
       fund,
     });
   };
+
+  addDonation = (donation) => {
+    this.db.collection("donations").add(
+      donation,
+    );
+  }
 
   getAllProjects = async (fundId) => {
     let querySnapshot = await this.db
@@ -37,14 +47,14 @@ class Firebase {
       projectList.push(doc.data());
     });
     return projectList;
-  } 
+  };
 
   getFund = async (fundId) => {
     let doc = await this.db.collection("funds").doc(fundId).get();
     let data = doc.data();
-    console.log(data)
+    console.log(data);
     return data;
-  }
+  };
 
   signup(email, password) {
     return this.auth().createUserWithEmailAndPassword(email, password);

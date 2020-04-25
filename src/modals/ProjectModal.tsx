@@ -1,8 +1,8 @@
 import React from "react";
-import { PieChart, Pie } from "recharts";
+import { Pie, PieChart } from "recharts";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import { BlockDisplay, BlockType, BlockSize } from "../sharedComponents/Block";
+import { BlockDisplay, BlockSize, BlockType } from "../sharedComponents/Block";
 import ThumbUpAlt from "@material-ui/icons/ThumbUpAlt";
 
 const useStyles = makeStyles({

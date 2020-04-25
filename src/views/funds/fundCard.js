@@ -28,8 +28,13 @@ const useStyles = makeStyles({
     paddingLeft: 15,
     paddingRight: 15,
     minWidth: 100,
+    "& a": { textDecoration: "none" },
     "& :hover": {
       backgroundColor: "yellow",
+      padding: 7,
+      paddingLeft: 15,
+      paddingRight: 15,
+      minWidth: 100,
     },
   },
 });
@@ -45,15 +50,8 @@ export function FundCard({ name, imageUrl }) {
         backgroundImage: `url("${imageUrl}")`,
       }}
     >
-      <Button
-        size="small"
-        color="primary"
-        className={classes.button}
-        onClick={(e) => {
-          console.log(e);
-        }}
-      >
-        {name}
+      <Button size="small" color="primary" className={classes.button}>
+        <a href={"funds/" + name}>{name}</a>
       </Button>
     </Paper>
   );

@@ -47,7 +47,7 @@ class ProjectListController extends Component {
       index++
     ) {
       projects.push(
-        <Project element={this.props.projectList[index]}></Project>
+        <Project key={index} element={this.props.projectList[index]} />
       );
     }
 
@@ -55,14 +55,14 @@ class ProjectListController extends Component {
       <div>
         <div className="ProjectContainer">
           <button className="btn-inline" onClick={this.prev}>
-            <svg class="search__icon">
-              <use href="img/icons.svg#icon-triangle-left"></use>
+            <svg className="search__icon">
+              <use href="img/icons.svg#icon-triangle-left" />
             </svg>
           </button>
           {projects}
           <button className="btn-inline" onClick={this.next}>
-            <svg class="search__icon">
-              <use href="img/icons.svg#icon-triangle-right"></use>
+            <svg className="search__icon">
+              <use href="img/icons.svg#icon-triangle-right" />
             </svg>
           </button>
         </div>

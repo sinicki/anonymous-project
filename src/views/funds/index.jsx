@@ -1,37 +1,45 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import {
-  BlockDisplay,
-  BlockType,
-  BlockSize,
-} from "../../sharedComponents/Block";
+import * as React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Route, Switch } from "react-router-dom";
 
-import { FUNDS } from "./data";
-import { FundCard } from "./fundCard";
+import FundGrid from "./fundGrid";
+import { FundPage } from "./fundPage";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+    "& a": {
+      color: "white",
+      textDecoration: "none",
+    },
+  },
+  content: {
+    background: "#d9d9d9",
+  },
+  fundButton: {
+    flexGrow: 1,
+    "& a": {
+      color: "white",
+      textDecoration: "none",
+    },
+  },
+}));
 
 export default function Funds() {
   return (
-    <BlockDisplay
-      blocks={[
-        {
-          title: "Our open funds",
-          size: BlockSize.medium,
-          type: BlockType.title,
-          content: (
-            <Container maxWidth="sm">
-              <Grid container spacing={10} justify="center" alignItems="center">
-                {FUNDS.map(([name, imageUrl]) => (
-                  <Grid item xs={12} sm={6} key={name} className={""}>
-                    <FundCard name={name} imageUrl={imageUrl} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Container>
-          ),
-        },
-      ]}
-    />
+    <Switch>
+      <Route path="/funds/:id">
+        <FundPage />
+      </Route>
+      <Route path="/funds/">
+        <FundGrid />
+      </Route>
+    </Switch>
   );
 }
