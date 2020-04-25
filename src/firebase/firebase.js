@@ -44,4 +44,5 @@ class Firebase {
     return this.auth().signOut();
   }
 }
+
 export default Firebase;
