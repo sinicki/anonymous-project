@@ -4,11 +4,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Companies from "./views/companies";
 import Invest from "./views/invest";
 import Profile from "./views/profile";
@@ -16,6 +17,7 @@ import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
 import { FirebaseContext } from "./firebase";
+import Funds from "./views/funds/index";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,13 +29,25 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    "& a": {
+      color: "white",
+      textDecoration: "none",
+    },
   },
   content: {
-    margin: "15px",
+    background: "#d9d9d9",
+  },
+  fundButton: {
+    flexGrow: 1,
+    "& a": {
+      color: "white",
+      textDecoration: "none",
+    },
   },
 }));
 
 const VIEWS = [
+  ["funds", Funds],
   ["companies", Companies],
   ["profile", Profile],
   ["invest", Invest],
@@ -61,7 +75,7 @@ const Content = () => {
   );
 };
 
-function AppMenu({ anchorEl, handleClose, user }: any) {
+function AppMenu({ anchorEl, handleClose, user }) {
   const firebase = React.useContext(FirebaseContext);
   return (
     <Menu
@@ -72,7 +86,7 @@ function AppMenu({ anchorEl, handleClose, user }: any) {
       onClose={handleClose}
     >
       {(user ? LOGGED_MENU : LOGGED_OUT_MENU).map((el) => (
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose} key={el.link}>
           <Link to={el.link}>{el.label}</Link>
         </MenuItem>
       ))}
@@ -94,7 +108,6 @@ function AppMenu({ anchorEl, handleClose, user }: any) {
 export default WithUser(function App({ user }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  //@ts-ignore
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -106,7 +119,12 @@ export default WithUser(function App({ user }) {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            CrowdFund
+            <Link to="">CrowdFund</Link>
+          </Typography>
+          <Typography variant="h6" className={classes.fundButton}>
+            <Button color="primary">
+              <Link to={"funds"}>Donate/Funds</Link>
+            </Button>
           </Typography>
           <IconButton
             edge="start"

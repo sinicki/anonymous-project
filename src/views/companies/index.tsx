@@ -1,4 +1,12 @@
-
 import React from "react";
+import ProjectController from './projectController.js'
 
-export default () => <div>Companies</div>;
+export default () => {
+
+    return  (
+        <div>
+            <ProjectController></ProjectController>
+        </div>
+    )
+
+}
