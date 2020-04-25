@@ -29,15 +29,22 @@ class Firebase {
 
   getAllProjects = async (fundId) => {
     let querySnapshot = await this.db
-      .collection("projects")
-      .where("fund_id", "==", fundId)
+      .collection("companies")
+      .where("funds_id", "==", fundId)
       .get();
     let projectList = [];
     querySnapshot.forEach((doc) => {
       projectList.push(doc.data());
     });
     return projectList;
-  };
+  } 
+
+  getFund = async (fundId) => {
+    let doc = await this.db.collection("funds").doc(fundId).get();
+    let data = doc.data();
+    console.log(data)
+    return data;
+  }
 
   signup(email, password) {
     return this.auth().createUserWithEmailAndPassword(email, password);

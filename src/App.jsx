@@ -4,7 +4,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
@@ -18,6 +17,7 @@ import Dashboard from "./views/dashboard";
 import WithUser from "./HOC/WithUser";
 import { FirebaseContext } from "./firebase";
 import Funds from "./views/funds/index";
+import ProjectModal from "./modals/ProjectModal";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
