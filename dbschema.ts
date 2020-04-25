@@ -18,6 +18,7 @@ interface Companies {
   tax_id: Number;
   country_id: String;
   funds_id: String;
+  city: String;
   votes_up: Number;
 }
 
