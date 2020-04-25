@@ -21,6 +21,8 @@ export default () => {
       // @ts-ignore
       await firebaseContext.signinWithGoogle();
     } catch (error) {
+      console.log("error");
+      console.log(error);
       setState({ error: error.message });
     }
   }

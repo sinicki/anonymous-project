@@ -121,9 +121,9 @@ const BlockImage = ({ background, clas }: any) => {
 
 const BlockTitle = ({ content, title, size, clas }: any) => {
   const classes = useStyles();
-  console.log(size);
+  const name: string = title.toLowerCase();
   return (
-    <div className={clas}>
+    <div className={clas} id={name}>
       <div
         className={
           size === BlockSize.superSmall
@@ -151,8 +151,10 @@ const BlockPlain = ({ content, clas }: any) => {
 
 const BlockImageTitle = ({ background, title, content, size, clas }: any) => {
   const classes = useStyles();
+  const name: string = title.toLowerCase();
   return (
     <div
+      id={name}
       className={`${clas} ${classes.blockImageTitle}`}
       style={{
         background: `url(${process.env.PUBLIC_URL + background})`,
@@ -189,7 +191,7 @@ export const BlockDisplay = ({ blocks }: { blocks: Block[] }) => {
   return (
     <div className={classes.blockDisplay}>
       {blocks.map((b) => (
-        <BlockComp {...b} />
+        <BlockComp {...b} key={b.title} />
       ))}
     </div>
   );
