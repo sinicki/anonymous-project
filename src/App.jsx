@@ -7,17 +7,33 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
+
 import MenuIcon from "@material-ui/icons/Menu";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import Companies from "./views/companies";
 import Invest from "./views/invest";
 import Profile from "./views/profile";
 import Auth from "./views/auth";
 import Dashboard from "./views/dashboard";
+import RegisterBusiness from "./views/registerBusiness";
 import WithUser from "./HOC/WithUser";
 import { FirebaseContext } from "./firebase";
 import Funds from "./views/funds/index";
 import "./styles.css";
+
+function focusByHash() {
+  const location = window.location;
+  if (location && location.hash) {
+    const elmnt = document.querySelector(location.hash);
+    elmnt && elmnt.scrollIntoView();
+  }
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const VIEWS = [
+  ["registerBusiness", RegisterBusiness],
   ["funds", Funds],
   ["companies", Companies],
   ["profile", Profile],
@@ -113,6 +130,14 @@ export default WithUser(function App({ user }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  console.log("called");
+
+
+  React.useEffect(() => {
+    console.log('effect');
+    focusByHash();
+  });
   return (
     <Router>
       <AppBar position="static">
@@ -121,8 +146,28 @@ export default WithUser(function App({ user }) {
             <Link to="">CrowdFund</Link>
           </Typography>
           <Typography variant="h6" className={classes.fundButton}>
+            <Button color="primary" onClick={() => focusByHash()}>
+              <Link to={"/#about"}>About</Link>
+            </Button>
+          </Typography>
+          <Typography variant="h6" className={classes.fundButton}>
+            <Button color="primary" onClick={() => focusByHash()}>
+              <Link to={"/#mission"}>Mission</Link>
+            </Button>
+          </Typography>
+          <Typography variant="h6" className={classes.fundButton}>
+            <Button color="primary" onClick={() => focusByHash()}>
+              <Link to={"/#team"}>Team</Link>
+            </Button>
+          </Typography>
+          <Typography variant="h6" className={classes.fundButton}>
             <Button color="primary">
               <Link to={"/funds"}>Donate/Funds</Link>
+            </Button>
+          </Typography>
+          <Typography variant="h6" className={classes.fundButton}>
+            <Button color="primary" onClick={() => focusByHash()}>
+              <Link to={"/profile"}>Profile</Link>
             </Button>
           </Typography>
           <IconButton

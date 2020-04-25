@@ -62,7 +62,7 @@ const Team = () => {
           <span>Team members:</span>
         </div>
         {TEAM.map((tm) => (
-          <TeamMember name={tm} />
+          <TeamMember name={tm} key={tm} />
         ))}
       </div>
     </div>
