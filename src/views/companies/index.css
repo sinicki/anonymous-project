@@ -18,18 +18,22 @@
     padding: 1.3rem 3rem;
     margin: auto;
 }
-
+   
+.ProjectContainer {
+}
 
 .ProjectTile {
-    display: inline-block;
-    border: 1px solid #888;
-    text-align:center;
-    padding: 1.3rem 3rem;
-    margin: 0 .2rem;
+  display: inline-block;
+  border: 1px solid #888;
+  text-align: center;
+  padding: 1.3rem 3rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
 }
 
 .btn-inline svg {
-    height: 1.5rem;
-    width: 1.5rem;
-    fill: currentColor;
-    margin: 0 .2rem; }
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: currentColor;
+  margin: 0 0.2rem;
+}

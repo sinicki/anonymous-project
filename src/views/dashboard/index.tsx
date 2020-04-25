@@ -2,7 +2,12 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import { BlockDisplay, Block, BlockType } from "../../sharedComponents/Block";
+import {
+  Block,
+  BlockDisplay,
+  BlockType,
+  BlockSize,
+} from "../../sharedComponents/Block";
 
 const useStyles = makeStyles(() => ({
   flexCenter: {
@@ -101,34 +106,39 @@ const getLines = (s: string) => s.split("\n").map((el) => <div>{el}</div>);
 
 const BLOCKS: Block[] = [
   {
+    size: BlockSize.medium,
     title: "Photo",
-    content: "/finance_1920.jpg",
+    background: "/finance_1920.jpg",
     type: BlockType.image,
   },
   {
+    size: BlockSize.small,
     title: "About",
     content: getLines(`We are offer donators an opportunity to get back "revenues", without guarantees, once the restaurants are profitable in the future (2-3 years)
       We create a new form of donation - When things get better, donators can get back their cash - Model of mutualize losses and mutualize the gains for the small businesses (Restaurant) that will survive thanks to these donations!
       We offer literary everyone to become a shareholder of their local community business! Crowd & Social Power!`),
-    type: BlockType.small,
+    type: BlockType.title,
   },
   {
+    size: BlockSize.small,
     title: "Mission",
     content: getLines(`We are offer donators an opportunity to get back "revenues", without guarantees, once the restaurants are profitable in the future (2-3 years)  
     We create a new form of donation - When things get better, donators can get back their cash - Model of mutualize losses and mutualize the gains for the small businesses (Restaurant) that will survive thanks to these donations!
     We offer literary everyone to become a shareholder of their local community business! Crowd & Social Power!
     `),
-    type: BlockType.small,
+    type: BlockType.title,
   },
   {
+    size: BlockSize.small,
     title: "Team",
     content: <Team />,
-    type: BlockType.small,
+    type: BlockType.title,
   },
   {
+    size: BlockSize.small,
     title: "Get in touch",
     content: <Touch />,
-    type: BlockType.small,
+    type: BlockType.title,
   },
 ];
 
