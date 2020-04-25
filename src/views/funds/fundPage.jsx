@@ -1,4 +1,5 @@
 import MaterialButton from "@material-ui/core/Button";
+import Button from "@material-ui/core/Button";
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,12 +11,17 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import { useLocation } from "react-router-dom";
 import { ProjectCarousel } from "./projectCarousel";
 import Paper from "@material-ui/core/Paper";
-const CARD_HEIGHT = 200;
 
 const useStyles = makeStyles({
   root: {},
   picture: {
     height: 200,
+    width: "auto",
+  },
+  cardPicture: {
+    height: 80,
+    maxWidth: 80,
+    backgroundSize: "cover",
     width: "auto",
   },
   progress: {
@@ -31,20 +37,33 @@ const useStyles = makeStyles({
     border: "1px solid black",
   },
   projectCard: {
-    width:250,
-    height:300,
-    maxWidth:160,
-    maxHeight:300,
-    fontSize:12,
-    margin:5
-  }
+    height: 300,
+    maxWidth: 160,
+    minWidth: 160,
+    maxHeight: 300,
+    fontSize: 4,
+    margin: 5,
+    padding: 5,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  voteButton: {
+    borderRadius: 15,
+    padding: 5,
+    border: "1px solid black",
+  },
+  text: {
+    fontSize: 12,
+  },
 });
 
 export function FundPage(props) {
   const location = useLocation();
   const classes = useStyles();
   const pathElements = location.pathname.split("/");
-  console.log(pathElements);
+
   const id = pathElements.length >= 3 ? pathElements[2] : null;
   const fund = FUNDS.find((fund) => fund[0] === id);
   if (!fund) {
@@ -54,7 +73,7 @@ export function FundPage(props) {
 
   return (
     <Container maxWidth="sm">
-      <Typography align={"center"} variant="h4" gutterBottom></Typography>
+      <Typography align={"center"} variant="h4" gutterBottom />
       <Grid container spacing={3} justify="center" alignItems="center">
         <Grid item xs={12} sm={6} className={classes.mainGrid}>
           <Typography variant="h6">{name} fund</Typography>
@@ -88,11 +107,61 @@ export function FundPage(props) {
               },
             ]}
             ItemComponent={(props) => (
-
-                <Paper className={classes.projectCard}>
+              <Paper className={classes.projectCard}>
                 {JSON.stringify(props)}
-                </Paper>
+              </Paper>
+            )}
+          />
+        </Grid>
 
+        <Grid item xs={12}>
+          <ProjectCarousel
+            title="Waiting for fundation"
+            comment="Here some project which is still waiting for you"
+            items={[
+              { name: "Forest cafe", description: "Near Notecka Puszcza" },
+              {
+                name: "London Cafe",
+                description: "In center of Warsaw",
+              },
+              {
+                name: "Kraków Nights",
+                description: "Near royal palace",
+              },
+              {
+                name: "Gdansk Sea",
+                description: "Near See",
+              },
+            ]}
+            ItemComponent={({ name, description }) => (
+              <Paper className={classes.projectCard}>
+                <Typography>
+                  <CardMedia
+                    component="img"
+                    className={classes.cardPicture}
+                    image={
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Igel.JPG/305px-Igel.JPG"
+                    }
+                    title={name}
+                  />
+                </Typography>
+                <Typography variant="h6" className={classes.text}>
+                  Name:
+                </Typography>
+                <Typography className={classes.text}>{name}</Typography>
+                <Typography variant="h6" className={classes.text}>
+                  Description:
+                </Typography>
+                <Typography className={classes.text}>{description}</Typography>
+                <Button
+                  className={classes.voteButton}
+                  onClick={() => {
+                    console.log("Vote for " + name);
+                  }}
+                >
+                  Vote
+                </Button>
+              </Paper>
             )}
           />
         </Grid>

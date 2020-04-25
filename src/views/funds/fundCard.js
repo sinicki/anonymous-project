@@ -50,14 +50,7 @@ export function FundCard({ name, imageUrl }) {
         backgroundImage: `url("${imageUrl}")`,
       }}
     >
-      <Button
-        size="small"
-        color="primary"
-        className={classes.button}
-        onClick={(e) => {
-          console.log(e);
-        }}
-      >
+      <Button size="small" color="primary" className={classes.button}>
         <a href={"funds/" + name}>{name}</a>
       </Button>
     </Paper>

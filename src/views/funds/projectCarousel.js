@@ -3,11 +3,16 @@ import Typography from "@material-ui/core/Typography";
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import IconButton from "@material-ui/core/IconButton";
 
 export function ProjectCarousel({ title, items, ItemComponent }) {
   const [index, setIndex] = React.useState(0);
-  const shownItems = items.slice(index, index + 3);
-  while (shownItems.length < 3){ shownItems.push(null)}
+  const shownItems = items
+    // .slice(index, index + 3)
+    .map((x) => ({ ...x, id: x.name }));
+  while (shownItems.length < 3) {
+    shownItems.push({ id: shownItems.length });
+  }
 
   return (
     <React.Fragment>
@@ -22,30 +27,51 @@ export function ProjectCarousel({ title, items, ItemComponent }) {
           justifyContent: "center",
         }}
       >
-        <ArrowBackIosIcon
+        <IconButton
+          disabled={index <= 0}
           onClick={() => {
-            if (index - 1 >= 0) {
+            if (index - 1 > -1) {
               setIndex(index - 1);
             }
           }}
-        />
-        <div  style={{
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+
+        <div
+          style={{
             display: "flex",
             width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-        }}>
-          {shownItems.map((itemProps) => (
-            <ItemComponent {...itemProps} />
+
+            minWidth: 540,
+            maxWidth: 540,
+            overflow: "hidden",
+            position: "relative",
+          }}
+        >
+          {shownItems.map((itemProps, i) => (
+            <div
+              key={itemProp.id}
+              style={{
+                position: "relative",
+                left: -180 * index,
+                transitionDuration: "1s",
+              }}
+            >
+              <ItemComponent {...itemProps} key={itemProps.id} />
+            </div>
           ))}
         </div>
-        <ArrowForwardIosIcon
+        <IconButton
+          disabled={index + 3 >= items.length}
           onClick={() => {
             if (index + 1 >= items.length - 3) {
               setIndex(index + 1);
             }
           }}
-        />
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
       </div>
     </React.Fragment>
   );
