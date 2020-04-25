@@ -6,6 +6,7 @@ export enum BlockType {
   large,
   full,
   image,
+  plainSmall,
 }
 
 export interface Block {
@@ -14,43 +15,46 @@ export interface Block {
   type: BlockType;
 }
 
-const useStyles = makeStyles(() => ({
-  block: {
-    background: "white",
-    fontFamily: "Arial, Helvetica, sans-serif",
-    color: "#434343",
-  },
-  blockTitle: {
-    height: "100px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "40px",
-  },
-  blockContent: {
-    padding: "25px 125px",
-  },
-  blockDisplay: {
-    display: "grid",
-    gridGap: "1px",
-  },
-  blockFull: {
-    height: "100vh",
-  },
-  blockImage: {
-    height: "600px",
-    width: "100%",
-  },
-  blockSmall: {
-    height: "400px",
-    overflow: "hidden",
-  },
-  flexCenter: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-}));
+const useStyles = makeStyles((theme) => {
+  console.log(theme);
+  return {
+    block: {
+      background: "white",
+      fontFamily: "Arial, Helvetica, sans-serif",
+      color: "#434343",
+    },
+    blockTitle: {
+      height: "100px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: "40px",
+    },
+    blockContent: {
+      padding: "25px 125px",
+    },
+    blockDisplay: {
+      display: "grid",
+      gridGap: "1px",
+    },
+    blockFull: {
+      height: "100vh",
+    },
+    blockImage: {
+      height: "600px",
+      width: "100%",
+    },
+    blockSmall: {
+      height: "400px",
+      overflow: "hidden",
+    },
+    flexCenter: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  };
+});
 
 const BlockImage = ({ content }: Block) => {
   const classes = useStyles();
@@ -93,11 +97,21 @@ const BlockLarge = ({ content, title }: Block) => {
   );
 };
 
+const BlockPlainSmall = ({ content }: Block) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.blockSmall}>
+      <div className={classes.blockContent}>{content}</div>
+    </div>
+  );
+};
+
 const CompMap = {
   [BlockType.full]: BlockFull,
   [BlockType.small]: BlockSmall,
   [BlockType.large]: BlockLarge,
   [BlockType.image]: BlockImage,
+  [BlockType.plainSmall]: BlockPlainSmall,
 };
 
 const BlockComp = ({ type, ...rest }: Block) => {

@@ -7,6 +7,7 @@
   text-align: center;
   padding: 1.3rem 3rem;
   margin: 0 0.2rem;
+  cursor: pointer;
 }
 
 .btn-inline svg {
