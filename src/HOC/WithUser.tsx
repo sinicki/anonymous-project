@@ -4,6 +4,8 @@ import { FirebaseContext } from "../firebase";
 
 export default (Comp: (props: any) => ReactElement) => (props: any) => {
   const firebaseContext = useContext(FirebaseContext);
+  console.log("context");
+  console.log(firebaseContext);
   const [state, setState] = useState<{
     authenticated: boolean;
     loading: boolean;

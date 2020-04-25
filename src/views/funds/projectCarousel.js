@@ -7,9 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 export function ProjectCarousel({ title, items, ItemComponent }) {
   const [index, setIndex] = React.useState(0);
-  const shownItems = items
-
-    .map((x) => ({ ...x, id: x.name }));
+  const shownItems = items.map((x) => ({ ...x, id: x.name }));
   while (shownItems.length < 3) {
     shownItems.push({ id: shownItems.length });
   }
