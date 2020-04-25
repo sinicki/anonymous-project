@@ -55,7 +55,7 @@ export function ProjectCarousel({ title, items, ItemComponent }) {
               style={{
                 position: "relative",
                 left: -180 * index,
-                transitionDuration: "1s",
+                transitionDuration: "0.3s",
               }}
             >
               <ItemComponent {...itemProps} key={itemProps.id} />
