@@ -9,7 +9,7 @@ import {
 
 export default () => {
 
-  let fundName = "gyms"
+  let fundName = "restaurants"
 
   return (
     <div>
