@@ -18,7 +18,6 @@ import WithUser from "./HOC/WithUser";
 import { FirebaseContext } from "./firebase";
 import Funds from "./views/funds/index";
 import ProjectModal from "./modals/ProjectModal";
-import Carousel from "react-material-ui-carousel";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({

@@ -3,22 +3,22 @@ import { FirebaseContext } from "../../firebase";
 import ProjectListController from "./ProjectListController";
 
 class ProjectController extends Component {
-  state = {
-    loading: true,
-    projectList: [],
-  };
+    state = {
+        loading: true,
+        projectList: [],
+    };
 
-  componentDidMount() {
-    let value = this.context;
-    value.getAllProjects("lQbjexa1WjJBhQ9IU4v1").then((list) => {
-      this.setState((prevState) => {
-        return {
-          loading: false,
-          projectList: list,
-        };
-      });
-    });
-  }
+    componentDidMount() {
+        let value = this.context;
+        value.getAllProjects(this.props.fundName).then(list => {
+            this.setState(prevState => {
+                return {
+                    loading: false,
+                    projectList: list
+                    }
+                }) 
+        });
+    }
 
   render() {
     let projects = this.state.loading ? (
