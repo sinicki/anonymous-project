@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   content: {
-    margin: "15px",
+    background: "#d9d9d9",
   },
   fundButton: {
     flexGrow: 1,
