@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import { BlockDisplay, Block, BlockType } from "../../sharedComponents/Block";
+import { Block, BlockDisplay, BlockType } from "../../sharedComponents/Block";
 
 const useStyles = makeStyles(() => ({
   flexCenter: {
