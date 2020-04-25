@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactElement, useContext } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user";
 import { FirebaseContext } from "../firebase";
 
@@ -14,10 +14,9 @@ export default (Comp: (props: any) => ReactElement) => (props: any) => {
     user: null,
   });
   useEffect(() => {
-    if (firebaseContext !== null)
+    if (firebaseContext !== null) {
       // @ts-ignore
       firebaseContext.auth().onAuthStateChanged((user: any) => {
-        console.log(user);
         if (user) {
           setState({
             authenticated: true,
@@ -32,7 +31,8 @@ export default (Comp: (props: any) => ReactElement) => (props: any) => {
           });
         }
       });
-  }, []);
+    }
+  }, [firebaseContext]);
   return (
     <UserContext.Provider value={state.user}>
       <Comp {...props} user={state.user} />
