@@ -6,38 +6,70 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 const FUNDS = [
   [
     "Hotels",
-    "Lumi on jääkiteiden ja ilman muodostamaa kuohkeaa ainetta, jota syntyy pilvissä ja sataa maahan talvella riippuen siitä, onko ilman lämpötila tarpeeksi kylmä. Puhdas lumi on valkoista ja läpinäkymätöntä. Lumi muodostaa maan pinnalle valkoisen, eristävän peitteen, joka pysyy lumena niin kauan, kunnes lämpötila nousee nollan yläpuolelle ja lumi sulaa vedeksi. Jos lumi ei kesälläkään ehdi sulaa, se kovettuu vähitellen jäätiköksi.\n" +
-      "\n" +
-      "Monet eläimet ovat sopeutuneet lumi-ilmastoon, ja niiden talvehtimisen onnistumiseen vaikuttaa lumen määrä. Lisäksi monien eläinten talviturkki on valkoinen, ja lumi suojaa myös useiden kasvien talvehtimista. Ihmisen toimintaan lumella on sekä positiivisia että negatiivisia vaikutuksia. Lumipeite helpottaa esimerkiksi hiihtäen tai potkukelkalla liikkumista, sekä mahdollistaa monet talviurheilulajit ja muut harrastukset, mutta toisaalta sakea lumipyry saattaa aiheuttaa liikennekaaoksen ja liukastumisia.",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Mercure_hotel_taksim.jpg/1920px-Mercure_hotel_taksim.jpg",
   ],
   [
     "Restaurants",
-    "Lumikiteiden muoto riippuu lämpötilasta ja kosteudesta sekä niiden syntypaikassa että matkalla maan pinnalle. Jääkiteiden rakenteen takia niistä voi tulla kuusikulmaisia levyjä, neulasia tai haaroittuvia tähtiä.[1] Japanilainen Ukichiro Nakaya kasvatti 1930-luvulla lumihiutaleita kaniininkarvojen päässä laboratoriossa ja tutki systemaattisesti kosteuden ja lämpötilan vaikutusta. Lähellä nollaa syntyi levyjä, 3–12 pakkasasteessa pilareita, sitten taas levyjä ja kylmemmässä kuin −22 asteessa jälleen pilareita. Mitä vähemmän kosteutta oli, sitä yksinkertaisempia kiteistä tuli. Monihaaraiset, tähtimäiset kuviot vaativat suuren kosteuden.[2] Sopivissa oloissa lumikiteet tarttuvat toisiinsa ja muodostavat lumihiutaleita, joissa voi olla satoja toisiinsa takertuneita lumikiteitä.",
+    "https://upload.wikimedia.org/wikipedia/commons/2/22/Petrus_%28London%29_Kitchen.jpg",
   ],
   [
     "Gyms",
-    "Lumi on jääkiteiden ja ilman muodostamaa kuohkeaa ainetta, jota syntyy pilvissä ja sataa maahan talvella riippuen siitä, onko ilman lämpötila tarpeeksi kylmä. Puhdas lumi on valkoista ja läpinäkymätöntä. Lumi muodostaa maan pinnalle valkoisen, eristävän peitteen, joka pysyy lumena niin kauan, kunnes lämpötila nousee nollan yläpuolelle ja lumi sulaa vedeksi. Jos lumi ei kesälläkään ehdi sulaa, se kovettuu vähitellen jäätiköksi.\n" +
-      "\n" +
-      "Monet eläimet ovat sopeutuneet lumi-ilmastoon, ja niiden talvehtimisen onnistumiseen vaikuttaa lumen määrä. Lisäksi monien eläinten talviturkki on valkoinen, ja lumi suojaa myös useiden kasvien talvehtimista. Ihmisen toimintaan lumella on sekä positiivisia että negatiivisia vaikutuksia. Lumipeite helpottaa esimerkiksi hiihtäen tai potkukelkalla liikkumista, sekä mahdollistaa monet talviurheilulajit ja muut harrastukset, mutta toisaalta sakea lumipyry saattaa aiheuttaa liikennekaaoksen ja liukastumisia.",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Amsterdam_-_Gymnasium_-_0591.jpg/1280px-Amsterdam_-_Gymnasium_-_0591.jpg",
   ],
-  ["Farm", "cows etc"],
+  [
+    "Travel agencies",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Farming_near_Klingerstown%2C_Pennsylvania.jpg/640px-Farming_near_Klingerstown%2C_Pennsylvania.jpg",
+  ],
 ];
 
+const CARD_HEIGHT = 200;
+
 const useStyles = makeStyles({
+  title: {
+    position: "relative",
+    top: 40,
+    left: 40,
+    zIndex: "3",
+  },
+  centralized: {
+
+  },
   root: {
-    //  width:500,
-    //  maxWidth: 500,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    maxWidth: 256,
+    width: 256,
+    maxHeight: CARD_HEIGHT,
+    height: CARD_HEIGHT,
+
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center top",
   },
-  media: {
-    height: 140,
+  button: {
+    border: "1px solid black",
+    borderRadius: 3,
+    backgroundColor: "white",
+    color: "gray",
+    padding: 7,
+    paddingLeft: 15,
+    paddingRight: 15,
+    minWidth: 100,
+    "& :hover": {
+      backgroundColor: "yellow",
+    },
   },
+
   description: {
-    maxHeight: 400,
+    maxHeight: 300,
     overflowY: "auto",
   },
 });
@@ -46,33 +78,35 @@ export default function Funds() {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={3}>
-      {FUNDS.map(([name, description]) => (
-        <Grid item xs={6} sm={3} key={name}>
-          <Card className={classes.root} key={name}>
-            <CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {name}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                  className={classes.description}
-                >
-                  {description}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary">
-                Donate
+    <Container maxWidth="sm">
+      <Typography align={"center"} variant="h4" gutterBottom>
+      Our open funds
+      </Typography>
+      <Grid container spacing={10} justify="center" alignItems="center">
+        {FUNDS.map(([name, imageUrl]) => (
+          <Grid item xs={12} sm={6} key={name} className={""}>
+            <Paper
+              className={classes.root + " " + classes.centralized}
+              key={name}
+              style={{
+
+                backgroundImage: `url("${imageUrl}")`,
+              }}
+            >
+              <Button
+                size="small"
+                color="primary"
+                className={classes.button}
+                onClick={(e) => {
+                  console.log(e);
+                }}
+              >
+                {name}
               </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 }
