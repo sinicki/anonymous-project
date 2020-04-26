@@ -36,8 +36,16 @@ export default (props) => {
         />
       )}
       <Paper className={props.projectCard}>
-        {JSON.stringify(props.itemComponentProps)}
-        {vote}
+      {<div style = {{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundImage:  `url("${props.itemComponentProps.image_url}"`, 
+          width:160, 
+          height:300}}>
+          {vote}  
+        </div>}
+        {<img src={props.itemComponentProps.image_url} width={160} height={300}></img>}
       </Paper>
     </div>
   );
