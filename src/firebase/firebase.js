@@ -48,10 +48,15 @@ class Firebase {
     return projectList;
   };
 
+  listenToDatabase = (fundId, handler) => {
+    this.db.collection("funds").doc(fundId).onSnapshot((doc) => {
+      handler(doc.data());
+    });
+  }
+
   getFund = async (fundId) => {
     let doc = await this.db.collection("funds").doc(fundId).get();
     let data = doc.data();
-    console.log(data);
     return data;
   };
 
