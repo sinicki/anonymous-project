@@ -1,5 +1,6 @@
 import React from "react";
 
+//@ts-ignore
 export default ({ loading, children }) => {
   return (
     <div>
@@ -8,7 +9,7 @@ export default ({ loading, children }) => {
           <img src={`${process.env.PUBLIC_URL + "/img/loader.gif"}`} />
         </div>
       ) : (
-        { children }
+        children
       )}
     </div>
   );
