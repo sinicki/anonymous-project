@@ -23,6 +23,7 @@ export default ({
   project: any;
 }) => {
   const classes = useStyles();
+  console.log('project->')
   console.log(project);
   return (
     <Modal
