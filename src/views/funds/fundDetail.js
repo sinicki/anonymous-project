@@ -13,9 +13,16 @@ class FundDetail extends Component {
   state = {
     loading: true,
     fundDetail: {},
+    showPopup: false
   };
 
   amount = 0;
+
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
 
   componentDidMount() {
     let value = this.context;
@@ -70,11 +77,7 @@ class FundDetail extends Component {
                 <MaterialButton
                 onClick={() => {
                     this.donate();
-                    this.setState((prevState)=> {
-                        return {
-                            amountDonated: prevState.amountDonated + this.amount
-                        }
-                    })
+                    
                     // history.push('/profile')
                 }}
                 className={this.props.classes.roundedButton}
