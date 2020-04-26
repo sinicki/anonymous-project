@@ -125,10 +125,7 @@ export default WithUser(function App({ user }) {
     setAnchorEl(null);
   };
 
-  console.log("called");
-
   React.useEffect(() => {
-    console.log("effect");
     focusByHash();
   });
   return (

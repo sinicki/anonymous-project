@@ -25,8 +25,7 @@ export default (props) => {
       await firebaseContext.signinWithGoogle();
       history.push('/#about')
     } catch (error) {
-      console.log("error");
-      console.log(error);
+
       setState({ error: error.message });
     }
   }
