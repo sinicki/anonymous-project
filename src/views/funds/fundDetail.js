@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import MaterialButton from "@material-ui/core/Button";
 import Loader from "../../sharedComponents/Loader";
 import { Route } from 'react-router-dom'
+import ProjectModal from "../../modals/ProjectModal2";   
 
 class FundDetail extends Component {
   state = {
@@ -49,6 +50,16 @@ class FundDetail extends Component {
       <Loader loading={true} children={<div></div>}></Loader>
     ) : (
       <div className={this.props.classes.firstRow}>
+            <ProjectModal
+                open={this.state.showPopup}
+                handleClose={(ev) => {
+                    ev.stopPropagation();
+                    this.setState({
+                        showPopup:false
+                    });
+                }}
+                project={this.amount}
+            />
         <div style={{ width: "100%", padding: "15px" }}>
           <Grid item xs={12} sm={6} className={this.props.classes.mainGrid}>
             <Typography variant="h6">
@@ -60,7 +71,7 @@ class FundDetail extends Component {
               Amount rest: {this.state.fundDetail.amount_donated}PLN
             </Typography>
             <Typography variant="h6">
-              Total amount: {this.state.fundDetail.amount_donated}PLN
+              Total amount: {this.state.fundDetail.target_amount}PLN
             </Typography>
             <LinearProgress
               variant="determinate"
@@ -77,7 +88,10 @@ class FundDetail extends Component {
                 <MaterialButton
                 onClick={() => {
                     this.donate();
-                    
+                    this.setState({
+                        showPopup:true
+                    })
+
                     // history.push('/profile')
                 }}
                 className={this.props.classes.roundedButton}
