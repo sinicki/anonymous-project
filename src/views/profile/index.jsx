@@ -14,13 +14,14 @@ const PORTRAIT_URL =
 
 const useStyles = makeStyles({
   root: { backgroundColor: "white" },
+  pieImage: { height: 450, width: "auto" },
   portrait: {
-    width:200,
-    height:240
+    width: 200,
+    height: 240,
   },
   userName: {
     fontSize: 16,
-    fontFamily:"Courier New",
+    fontFamily: "Courier New",
   },
   paper: {
     fontSize: 14,
@@ -35,15 +36,15 @@ const useStyles = makeStyles({
   },
 });
 
-export default WithUser(function Profile({user}) {
+export default WithUser(function Profile({ user }) {
   const location = useLocation();
   const classes = useStyles();
-  if (!user){
+  if (!user) {
     return null;
   }
-  console.log('user');
+  console.log("user");
 
-  const {displayName, email} = user;
+  const { displayName, email } = user;
 
   const pathElements = location.pathname.split("/");
 
@@ -54,9 +55,11 @@ export default WithUser(function Profile({user}) {
     { date: "2020-01-04", amount: "222PLN", fund: "Hotels" },
   ];
 
-  const totalAmount = donations.map(x=>Number.parseFloat(x.amount)).reduce((r, number)=>{
-    return r + number;
-  }, 0)
+  const totalAmount = donations
+    .map((x) => Number.parseFloat(x.amount))
+    .reduce((r, number) => {
+      return r + number;
+    }, 0);
 
   return (
     <Container maxWidth="md" className={classes.root}>
@@ -64,11 +67,8 @@ export default WithUser(function Profile({user}) {
       <Grid container spacing={10} justify="center" alignItems="center">
         <Grid item xs={12} sm={4} className={""}>
           <Typography align={"center"} variant="h4" gutterBottom>
-            <CardMedia
-
-              title={"name"}
-            >
-              <img className={classes.portrait} src = {PORTRAIT_URL}/>
+            <CardMedia title={"name"}>
+              <img className={classes.portrait} src={PORTRAIT_URL} />
             </CardMedia>
           </Typography>
 
@@ -77,6 +77,11 @@ export default WithUser(function Profile({user}) {
         </Grid>
         <Grid item xs={12} sm={8} className={""}>
           <Typography>Total amount: {totalAmount} PLN</Typography>
+          <Typography align={"center"} variant="h4" gutterBottom>
+            <CardMedia title={"name"}>
+              <img className={classes.pieImage} src={"/pie.PNG"} />
+            </CardMedia>
+          </Typography>
         </Grid>
         <Grid item xs={12} className={""} align="center">
           <Typography align={"center"} variant="h4" gutterBottom />

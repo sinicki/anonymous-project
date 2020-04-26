@@ -93,7 +93,10 @@ const Touch = ({}) => {
         <div className={classes.touchLine}>
           <TextField id="email" label="Email" autoComplete="email" />
           <TextField id="full-name" label="Full name" />
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "rgb(255, 137, 50)", color: "white" }}
+          >
             Send
           </Button>
         </div>
@@ -108,25 +111,29 @@ const BLOCKS: Block[] = [
   {
     size: BlockSize.medium,
     title: "Photo",
-    background: "/finance_1920.jpg",
+    background: "/logo.webp",
     type: BlockType.image,
   },
-  {
-    size: BlockSize.small,
-    title: "About",
-    content: getLines(`We are offer donators an opportunity to get back "revenues", without guarantees, once the restaurants are profitable in the future (2-3 years)
-      We create a new form of donation - When things get better, donators can get back their cash - Model of mutualize losses and mutualize the gains for the small businesses (Restaurant) that will survive thanks to these donations!
-      We offer literary everyone to become a shareholder of their local community business! Crowd & Social Power!`),
-    type: BlockType.title,
-  },
+
   {
     size: BlockSize.small,
     title: "Mission",
-    content: getLines(`We are offer donators an opportunity to get back "revenues", without guarantees, once the restaurants are profitable in the future (2-3 years)  
-    We create a new form of donation - When things get better, donators can get back their cash - Model of mutualize losses and mutualize the gains for the small businesses (Restaurant) that will survive thanks to these donations!
-    We offer literary everyone to become a shareholder of their local community business! Crowd & Social Power!
+    content: getLines(`
+  We are offer donators an opportunity to get back revenues, without guarantees,
+   once the restaurants are profitable in the future.
+    We create a new form of donation - when things get better,
+    donators can get back their cash. 
+    RiseUpFund offers literary everyone to become a shareholder of their local community business!
+Crowd & Social Power!
+
     `),
     type: BlockType.title,
+  },
+  {
+    size: BlockSize.medium,
+    title: "Mission",
+    background: "/mission.webp",
+    type: BlockType.image,
   },
   {
     size: BlockSize.small,

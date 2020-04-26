@@ -9,13 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 
 import MenuIcon from "@material-ui/icons/Menu";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Companies from "./views/companies";
 import Invest from "./views/invest";
 import Profile from "./views/profile";
@@ -45,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     "& a": {
-      color: "white",
+      color: "rgb(255, 137, 50)",
       textDecoration: "none",
     },
   },
@@ -55,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   fundButton: {
     flexGrow: 1,
     "& a": {
-      color: "white",
+      color: "rgb(255, 137, 50)",
       textDecoration: "none",
     },
   },
@@ -140,15 +134,11 @@ export default WithUser(function App({ user }) {
   return (
     <Router>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: "white", color: "black" }}>
           <Typography variant="h6" className={classes.title}>
-            <Link to="">CrowdFund</Link>
+            <Link to="">RiseUpFund</Link>
           </Typography>
-          <Typography variant="h6" className={classes.fundButton}>
-            <Button color="primary" onClick={() => focusByHash()}>
-              <Link to={"/#about"}>About</Link>
-            </Button>
-          </Typography>
+
           <Typography variant="h6" className={classes.fundButton}>
             <Button color="primary" onClick={() => focusByHash()}>
               <Link to={"/#mission"}>Mission</Link>
