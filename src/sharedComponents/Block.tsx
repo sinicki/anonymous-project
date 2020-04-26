@@ -151,7 +151,7 @@ const BlockPlain = ({ content, clas }: any) => {
 
 const BlockImageTitle = ({ background, title, content, size, clas }: any) => {
   const classes = useStyles();
-  const name: string = title.toLowerCase();
+  const name: string = title;
   return (
     <div
       id={name}
