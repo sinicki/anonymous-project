@@ -6,16 +6,18 @@ import Button from "@material-ui/core/Button";
 export default (props) => {
   const [open, setOpen] = useState(false);
 
-  let vote = props.needsFunding ?               
+  let vote = props.needsFunding ? (
     <Button
-        className={props.classes.voteButton}
-        onClick={() => {
-          console.log("Vote for " + props.itemComponentProps.name);
-        }}
-      >
-        Vote
+      className={props.classes.voteButton}
+      onClick={() => {
+        console.log("Vote for " + props.itemComponentProps.name);
+      }}
+    >
+      Vote
     </Button>
-  : <div></div>  
+  ) : (
+    <div></div>
+  );
 
   return (
     <div
@@ -30,12 +32,12 @@ export default (props) => {
           handleClose={(ev) => {
             ev.stopPropagation();
             setOpen(false);
-        }}  
+          }}
         />
       )}
       <Paper className={props.projectCard}>
         {JSON.stringify(props.itemComponentProps)}
-        {vote}  
+        {vote}
       </Paper>
     </div>
   );

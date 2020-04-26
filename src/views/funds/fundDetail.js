@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import MaterialButton from "@material-ui/core/Button";
-import Loader from '../../sharedComponents/Loader'
+import Loader from "../../sharedComponents/Loader";
 
 class FundDetail extends Component {
   state = {
@@ -28,53 +28,68 @@ class FundDetail extends Component {
 
   donate = () => {
     let value = this.context;
-    let currentUserEmail = value.getCurrentUser().email  
+    let currentUserEmail = value.getCurrentUser().email;
     value.addDonation({
       amount_donated: parseInt(this.amount),
       email: currentUserEmail,
-      funds_id: this.props.fundName.toLowerCase()
-    })
-  }
+      funds_id: this.props.fundName.toLowerCase(),
+    });
+  };
 
   render() {
     let toRender = this.state.loading ? (
-        <Loader loading={true} children={<div></div>} ></Loader>
+      <Loader loading={true} children={<div></div>}></Loader>
     ) : (
-        <div className={this.props.classes.firstRow}>
-            <div style={{ width: "100%", padding: "15px" }}>
-                <Grid item xs={12} sm={6} className={this.props.classes.mainGrid}>
-                <Typography variant="h6">{this.props.fundName.charAt(0).toUpperCase() + this.props.fundName.slice(1)} fund</Typography>
-                <Typography variant="h6">Amount rest: {this.state.fundDetail.amount_donated}PLN</Typography>
-                <Typography variant="h6">Total amount: {this.state.fundDetail.amount_donated}PLN</Typography>
-                <LinearProgress
-                    variant="determinate"
-                    color="secondary"
-                    value={50}
-                    className={this.props.classes.progress}
-                />
-                <TextField id="donation-amount" label="Amount" onChange={event => this.amount = event.target.value} />
-                <MaterialButton onClick={this.donate} className={this.props.classes.roundedButton}>
-                    Donate
-                </MaterialButton>
-            </Grid>
-            </div>
-            <div
-                style={{
-                width: "100%",
-                padding: "15px",
-                display: "flex",
-                justifyContent: "center",
-                }}
+      <div className={this.props.classes.firstRow}>
+        <div style={{ width: "100%", padding: "15px" }}>
+          <Grid item xs={12} sm={6} className={this.props.classes.mainGrid}>
+            <Typography variant="h6">
+              {this.props.fundName.charAt(0).toUpperCase() +
+                this.props.fundName.slice(1)}{" "}
+              fund
+            </Typography>
+            <Typography variant="h6">
+              Amount rest: {this.state.fundDetail.amount_donated}PLN
+            </Typography>
+            <Typography variant="h6">
+              Total amount: {this.state.fundDetail.amount_donated}PLN
+            </Typography>
+            <LinearProgress
+              variant="determinate"
+              color="secondary"
+              value={50}
+              className={this.props.classes.progress}
+            />
+            <TextField
+              id="donation-amount"
+              label="Amount"
+              onChange={(event) => (this.amount = event.target.value)}
+            />
+            <MaterialButton
+              onClick={this.donate}
+              className={this.props.classes.roundedButton}
             >
-                <Grid item xs={12} sm={6} className={""}>
-                <CardMedia
-                    className={this.props.classes.picture}
-                    image={this.state.fundDetail.image_url}
-                    title={this.props.fundName}
-                />
-                </Grid>
-            </div>
+              Donate
+            </MaterialButton>
+          </Grid>
         </div>
+        <div
+          style={{
+            width: "100%",
+            padding: "15px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Grid item xs={12} sm={6} className={""}>
+            <CardMedia
+              className={this.props.classes.picture}
+              image={this.state.fundDetail.image_url}
+              title={this.props.fundName}
+            />
+          </Grid>
+        </div>
+      </div>
     );
     return <div>{toRender}</div>;
   }
