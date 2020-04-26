@@ -8,6 +8,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
 import LinearProgress from "@material-ui/core/LinearProgress";
+
+const PORTRAIT_URL =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Reproduction-of-the-1805-Rembrandt-Peale-painting-of-Thomas-Jefferson-New-York-Historical-Society_1.jpg/200px-Reproduction-of-the-1805-Rembrandt-Peale-painting-of-Thomas-Jefferson-New-York-Historical-Society_1.jpg";
 import { useLocation } from "react-router-dom";
 
 import Paper from "@material-ui/core/Paper";
@@ -44,6 +47,14 @@ export default function Profile(props) {
       <Typography align={"center"} variant="h4" gutterBottom />
       <Grid container spacing={10} justify="center" alignItems="center">
         <Grid item xs={12} sm={3} className={""}>
+          <Typography align={"center"} variant="h4" gutterBottom>
+            <CardMedia
+              className={classes.picture}
+              image={PORTRAIT_URL}
+              title={name}
+            />
+          </Typography>
+
           <Typography>User Name: Jan Kowalski</Typography>
         </Grid>
         <Grid item xs={12} sm={9} className={""}>
