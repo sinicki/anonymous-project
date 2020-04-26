@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// @ts-ignore 
+// @ts-ignore
 export default (props) => {
   const classes = useStyles();
   const history = useHistory();
@@ -23,9 +23,8 @@ export default (props) => {
     try {
       // @ts-ignore
       await firebaseContext.signinWithGoogle();
-      history.push('/#about')
+      history.push("/#about");
     } catch (error) {
-
       setState({ error: error.message });
     }
   }

@@ -10,6 +10,7 @@ import Loader from "../../sharedComponents/Loader";
 import { Route } from 'react-router-dom'
 import ProjectModal from "../../modals/ProjectModal2";   
 
+
 class FundDetail extends Component {
   state = {
     loading: true,
@@ -27,12 +28,12 @@ class FundDetail extends Component {
 
   componentDidMount() {
     let value = this.context;
-    value.listenToDatabase(this.props.fundName, (res)=> {
-        this.setState({
-            loading: false,
-            fundDetail: res,
-          });
-    })
+    value.listenToDatabase(this.props.fundName, (res) => {
+      this.setState({
+        loading: false,
+        fundDetail: res,
+      });
+    });
   }
 
   donate = () => {
@@ -84,21 +85,22 @@ class FundDetail extends Component {
               label="Amount"
               onChange={(event) => (this.amount = event.target.value)}
             />
-            <Route render={({ history}) => (
+            <Route
+              render={({ history }) => (
                 <MaterialButton
-                onClick={() => {
+                  onClick={() => {
                     this.donate();
                     this.setState({
                         showPopup:true
                     })
-
                     // history.push('/profile')
-                }}
-                className={this.props.classes.roundedButton}
+                  }}
+                  className={this.props.classes.roundedButton}
                 >
-                Donate
+                  Donate
                 </MaterialButton>
-            )} />
+              )}
+            />
           </Grid>
         </div>
         <div
