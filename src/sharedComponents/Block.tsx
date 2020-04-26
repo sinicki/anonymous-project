@@ -57,19 +57,55 @@ const useStyles = makeStyles((theme) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontSize: "40px",
+
+      fontFamily: "questrial, sans-serif",
+      fontSize: 40,
+      fontStretch: "100%",
+      fontStyle: "normal",
+      fontVariantCaps: "normal",
+      fontVariantEastEsian: "normal",
+      fontVariantLigatures: "normal",
+      fontVariantNumeric: "normal",
+      fontWeight: 400,
+      color: "rgb(255, 137, 50)",
     },
     blockSmallTitle: {
       height: "50px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontSize: "20px",
+
       margin: "20px 0 0 0",
+
+      fontFamily: "questrial, sans-serif",
+      fontSize: 20,
+      fontStretch: "100%",
+      fontStyle: "normal",
+      fontVariantCaps: "normal",
+      fontVariantEastEsian: "normal",
+      fontVariantLigatures: "normal",
+      fontVariantNumeric: "normal",
+      fontWeight: 400,
+      color: "rgb(255, 137, 50)",
     },
 
     blockContent: {
       padding: "25px 125px",
+      font:
+        "normal normal normal 15px/1.875em avenir-lt-w01_35-light1475496,sans-serif",
+      fontWeight: 400,
+
+      color: "#0E1F58",
+      textAlign: "center",
+      /*  font-family:avenir-lt-w01_35-light1475496, sans-serif;
+    font-size:15px;
+    font-stretch:100%;
+    font-style:normal;
+    font-variant-caps:normal;
+    font-variant-east-asian:normal;
+    font-variant-ligatures:normal;
+    font-variant-numeric:normal;
+    font-weight:400;*/
     },
     blockDisplay: {
       display: "grid",
@@ -111,9 +147,14 @@ const BlockImage = ({ background, clas }: any) => {
   const classes = useStyles();
   return (
     <div
+      id={"land"}
       className={clas}
       style={{
-        background: `url(${process.env.PUBLIC_URL + background})`,
+        background: `url(${
+          process.env.PUBLIC_URL + background
+        }) no-repeat center center fixed`,
+
+        backgroundSize: "cover",
       }}
     />
   );
