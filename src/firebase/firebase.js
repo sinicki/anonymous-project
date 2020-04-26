@@ -35,10 +35,11 @@ class Firebase {
     this.db.collection("donations").add(donation);
   };
 
-  getAllProjects = async (fundId) => {
+  getAllProjects = async (fundId, funded) => {
     let querySnapshot = await this.db
       .collection("companies")
       .where("funds_id", "==", fundId)
+      .where("funded", "==", funded)
       .get();
     let projectList = [];
     querySnapshot.forEach((doc) => {
