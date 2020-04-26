@@ -36,16 +36,20 @@ export default (props) => {
         />
       )}
       <Paper className={props.projectCard}>
-      {<div style = {{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundImage:  `url("${props.itemComponentProps.image_url}"`, 
-          width:160, 
-          height:300}}>
-          {vote}  
-        </div>}
-        {<img src={props.itemComponentProps.image_url} width={160} height={300}></img>}
+        {
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundImage: `url("${props.itemComponentProps.image_url}"`,
+              width: 160,
+              height: 300,
+            }}
+          >
+            {vote}
+          </div>
+        }
       </Paper>
     </div>
   );
