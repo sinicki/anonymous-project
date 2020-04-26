@@ -23,7 +23,7 @@ export default ({
   project: any;
 }) => {
   const classes = useStyles();
-  console.log('project->')
+  console.log("project->");
   console.log(project);
   return (
     <Modal
@@ -49,8 +49,7 @@ export default ({
                       display: "flex",
                       justifyContent: "space-around",
                     }}
-                  >
-                  </div>
+                  ></div>
                 </div>
               ),
             },

@@ -1,13 +1,7 @@
-import Button from "@material-ui/core/Button";
-import React, { useContext } from "react";
-import Container from "@material-ui/core/Container";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
 import { FUNDS } from "./data";
 import { useLocation } from "react-router-dom";
-import { ProjectCarousel } from "./projectCarousel";
-import Paper from "@material-ui/core/Paper";
 import FundDetail from "./fundDetail";
 import FundProjects from "./fundProjects";
 
@@ -56,7 +50,10 @@ const useStyles = makeStyles({
   },
   voteButton: {
     borderRadius: 15,
+    backgroundColor: "white",
     padding: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
     border: "1px solid black",
   },
   text: {

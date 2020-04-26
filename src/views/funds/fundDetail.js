@@ -7,22 +7,21 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import MaterialButton from "@material-ui/core/Button";
 import Loader from "../../sharedComponents/Loader";
-import { Route } from 'react-router-dom'
-import ProjectModal from "../../modals/ProjectModal2";   
-
+import { Route } from "react-router-dom";
+import ProjectModal from "../../modals/ProjectModal2";
 
 class FundDetail extends Component {
   state = {
     loading: true,
     fundDetail: {},
-    showPopup: false
+    showPopup: false,
   };
 
   amount = 0;
 
   togglePopup() {
     this.setState({
-      showPopup: !this.state.showPopup
+      showPopup: !this.state.showPopup,
     });
   }
 
@@ -51,16 +50,16 @@ class FundDetail extends Component {
       <Loader loading={true} children={<div></div>}></Loader>
     ) : (
       <div className={this.props.classes.firstRow}>
-            <ProjectModal
-                open={this.state.showPopup}
-                handleClose={(ev) => {
-                    ev.stopPropagation();
-                    this.setState({
-                        showPopup:false
-                    });
-                }}
-                project={this.amount}
-            />
+        <ProjectModal
+          open={this.state.showPopup}
+          handleClose={(ev) => {
+            ev.stopPropagation();
+            this.setState({
+              showPopup: false,
+            });
+          }}
+          project={this.amount}
+        />
         <div style={{ width: "100%", padding: "15px" }}>
           <Grid item xs={12} sm={6} className={this.props.classes.mainGrid}>
             <Typography variant="h6">
@@ -91,8 +90,8 @@ class FundDetail extends Component {
                   onClick={() => {
                     this.donate();
                     this.setState({
-                        showPopup:true
-                    })
+                      showPopup: true,
+                    });
                     // history.push('/profile')
                   }}
                   className={this.props.classes.roundedButton}
