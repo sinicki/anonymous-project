@@ -133,9 +133,8 @@ export default WithUser(function App({ user }) {
 
   console.log("called");
 
-
   React.useEffect(() => {
-    console.log('effect');
+    console.log("effect");
     focusByHash();
   });
   return (

@@ -32,10 +32,8 @@ class Firebase {
   };
 
   addDonation = (donation) => {
-    this.db.collection("donations").add(
-      donation,
-    );
-  }
+    this.db.collection("donations").add(donation);
+  };
 
   getAllProjects = async (fundId, funded) => {
     let querySnapshot = await this.db

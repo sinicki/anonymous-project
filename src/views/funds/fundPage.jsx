@@ -1,5 +1,5 @@
 import Button from "@material-ui/core/Button";
-import React, { useContext }  from "react";
+import React, { useContext } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -8,8 +8,8 @@ import { FUNDS } from "./data";
 import { useLocation } from "react-router-dom";
 import { ProjectCarousel } from "./projectCarousel";
 import Paper from "@material-ui/core/Paper";
-import FundDetail from './fundDetail'
-import FundProjects from './fundProjects'
+import FundDetail from "./fundDetail";
+import FundProjects from "./fundProjects";
 
 import {
   BlockDisplay,
@@ -69,9 +69,7 @@ const useStyles = makeStyles({
   },
 });
 
-
 export function FundPage(props) {
-
   const location = useLocation();
   const classes = useStyles();
   const pathElements = location.pathname.split("/");
@@ -91,7 +89,10 @@ export function FundPage(props) {
           title: "Overview",
           size: BlockSize.small,
           content: (
-            <FundDetail fundName={name.toLowerCase()} classes = {classes}></FundDetail>
+            <FundDetail
+              fundName={name.toLowerCase()}
+              classes={classes}
+            ></FundDetail>
           ),
         },
         {
@@ -99,7 +100,11 @@ export function FundPage(props) {
           size: BlockSize.middle,
           title: "Funded projects",
           content: (
-            <FundProjects funded={true} fundName={name.toLowerCase()} classes = {classes}></FundProjects>
+            <FundProjects
+              funded={true}
+              fundName={name.toLowerCase()}
+              classes={classes}
+            ></FundProjects>
           ),
         },
         {
@@ -107,7 +112,11 @@ export function FundPage(props) {
           size: BlockSize.middle,
           title: "Waiting for fundation",
           content: (
-            <FundProjects funded={false} fundName={name.toLowerCase()} classes = {classes}></FundProjects>
+            <FundProjects
+              funded={false}
+              fundName={name.toLowerCase()}
+              classes={classes}
+            ></FundProjects>
             // <ProjectCarousel
             //   comment="Here some project which is still waiting for you"
             //   items={[
