@@ -7,7 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import MaterialButton from "@material-ui/core/Button";
 import Loader from "../../sharedComponents/Loader";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 class FundDetail extends Component {
   state = {
@@ -19,12 +19,12 @@ class FundDetail extends Component {
 
   componentDidMount() {
     let value = this.context;
-    value.listenToDatabase(this.props.fundName, (res)=> {
-        this.setState({
-            loading: false,
-            fundDetail: res,
-          });
-    })
+    value.listenToDatabase(this.props.fundName, (res) => {
+      this.setState({
+        loading: false,
+        fundDetail: res,
+      });
+    });
   }
 
   donate = () => {
@@ -66,22 +66,24 @@ class FundDetail extends Component {
               label="Amount"
               onChange={(event) => (this.amount = event.target.value)}
             />
-            <Route render={({ history}) => (
+            <Route
+              render={({ history }) => (
                 <MaterialButton
-                onClick={() => {
+                  onClick={() => {
                     this.donate();
-                    this.setState((prevState)=> {
-                        return {
-                            amountDonated: prevState.amountDonated + this.amount
-                        }
-                    })
+                    this.setState((prevState) => {
+                      return {
+                        amountDonated: prevState.amountDonated + this.amount,
+                      };
+                    });
                     // history.push('/profile')
-                }}
-                className={this.props.classes.roundedButton}
+                  }}
+                  className={this.props.classes.roundedButton}
                 >
-                Donate
+                  Donate
                 </MaterialButton>
-            )} />
+              )}
+            />
           </Grid>
         </div>
         <div

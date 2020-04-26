@@ -36,8 +36,8 @@ class Firebase {
   };
 
   addProject = (project) => {
-    this.db.collection("companies").add(project)
-  }
+    this.db.collection("companies").add(project);
+  };
 
   getAllProjects = async (fundId, funded) => {
     let querySnapshot = await this.db
@@ -53,10 +53,13 @@ class Firebase {
   };
 
   listenToDatabase = (fundId, handler) => {
-    this.db.collection("funds").doc(fundId).onSnapshot((doc) => {
-      handler(doc.data());
-    });
-  }
+    this.db
+      .collection("funds")
+      .doc(fundId)
+      .onSnapshot((doc) => {
+        handler(doc.data());
+      });
+  };
 
   getFund = async (fundId) => {
     let doc = await this.db.collection("funds").doc(fundId).get();

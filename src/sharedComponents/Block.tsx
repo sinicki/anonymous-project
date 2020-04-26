@@ -143,20 +143,26 @@ const SIZE_MAP = {
   [BlockSize.full]: "blockFull",
 };
 
-const BlockImage = ({ background, clas }: any) => {
+const BlockImage = ({ background, clas, content }: any) => {
   const classes = useStyles();
+  const style = !!content
+    ? { display: "flex", justifyContent: "center", alignItems: "center" }
+    : null;
   return (
     <div
       id={"land"}
       className={clas}
       style={{
+        ...style,
         background: `url(${
           process.env.PUBLIC_URL + background
         }) no-repeat center center fixed`,
 
         backgroundSize: "cover",
       }}
-    />
+    >
+      {content}
+    </div>
   );
 };
 

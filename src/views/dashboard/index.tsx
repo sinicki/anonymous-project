@@ -113,6 +113,27 @@ const BLOCKS: Block[] = [
     title: "Photo",
     background: "/logo.webp",
     type: BlockType.image,
+    content: (
+      <div
+        style={{
+          fontSize: 72,
+          fontWeight: 400,
+          fontStretch: "100%",
+          color: "white",
+          fontFamily: "questrial, sans-serif;",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div>RiseUpFund:</div>
+        <div>Creating</div>
+        <div> Opportunity</div>
+        <div style={{ minHeight: 20 }} />
+        <div style={{ fontSize: 20 }}>Successful Investments</div>
+      </div>
+    ),
   },
 
   {
