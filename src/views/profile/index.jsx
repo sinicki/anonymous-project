@@ -40,10 +40,12 @@ export default WithUser(function Profile({ user }) {
   const location = useLocation();
   const classes = useStyles();
   if (!user) {
-    return null;
+    // return null;
   }
   console.log("user");
-
+  var user = new Object();
+  user.displayName = "Tomasz Rapusta";
+  user.email = "tommy@rapusta.com";
   const { displayName, email } = user;
 
   const pathElements = location.pathname.split("/");
